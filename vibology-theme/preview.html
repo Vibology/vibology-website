@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vibology Theme Preview</title>
+
+    <!-- FOUC Prevention -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'auto';
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else if (theme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+            } else {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+            }
+        })();
+    </script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/screen.css">
+
+    <!-- Prism.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+</head>
+
+<body class="post-template">
+    <!-- Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress">
+        <div class="scroll-progress-bar"></div>
+    </div>
+
+    <div class="site-wrapper">
+        <!-- Header -->
+        <header class="site-header">
+            <div class="container">
+                <div class="header-inner">
+                    <!-- Site Logo/Title -->
+                    <div class="site-brand">
+                        <a href="/" class="site-logo-link">
+                            <span class="site-title">Vibology</span>
+                        </a>
+                    </div>
+
+                    <!-- Primary Navigation -->
+                    <nav class="site-nav primary-nav" aria-label="Primary navigation">
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#blog">Blog</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </nav>
+
+                    <!-- Header Actions -->
+                    <div class="header-actions">
+                        <!-- Theme Toggle -->
+                        <button class="header-action theme-toggle" aria-label="Toggle theme">
+                            <span class="icon-light">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="5"></circle>
+                                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                                </svg>
+                            </span>
+                            <span class="icon-dark">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main id="main-content" class="site-main">
+            <article class="post-full">
+                <div class="container container-md">
+                    <!-- Post Header -->
+                    <header class="post-header my-12 text-center">
+                        <a href="#" class="post-tag text-sm text-accent mb-4 inline-block">DESIGN</a>
+                        <h1 class="post-title mb-6">Welcome to Vibology Ghost Theme</h1>
+                        <div class="post-meta flex items-center justify-center gap-6 text-secondary">
+                            <div class="author-meta flex items-center gap-3">
+                                <span class="author-name">Theme Preview</span>
+                            </div>
+                            <time datetime="2026-01-20">Jan 20, 2026</time>
+                            <span>5 min read</span>
+                        </div>
+                    </header>
+
+                    <!-- Post Content -->
+                    <div class="post-content my-12">
+                        <h2>Typography & Content</h2>
+                        <p>This is a preview of the Vibology Ghost theme. The theme features a clean, modern design with excellent typography using the <strong>Cabin font family</strong>. It includes full dark mode support, responsive layouts, and comprehensive accessibility features.</p>
+
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li>WCAG AA compliant accessibility (11.2:1 contrast ratio)</li>
+                            <li>Smooth animations and micro-interactions</li>
+                            <li>Comprehensive Ghost card support</li>
+                            <li>Syntax highlighting with Prism.js</li>
+                            <li>Table of Contents generation</li>
+                            <li>Image lightbox and lazy loading</li>
+                            <li>Skip links and focus management</li>
+                            <li>Reduced motion support</li>
+                        </ul>
+
+                        <h3>Code Example</h3>
+                        <pre class="line-numbers"><code class="language-javascript">// Example JavaScript code with line numbers
+function initDarkMode() {
+  const theme = localStorage.getItem('theme') || 'auto';
+
+  function applyTheme(themeValue) {
+    if (themeValue === 'auto') {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+    } else {
+      document.documentElement.setAttribute('data-theme', themeValue);
+    }
+  }
+
+  applyTheme(theme);
+}
+
+initDarkMode();</code></pre>
+
+                        <blockquote>
+                            <p>This is a blockquote example. The theme supports beautiful blockquotes with proper styling and accent borders.</p>
+                            <cite>Attribution Example</cite>
+                        </blockquote>
+
+                        <h2>Ghost Cards</h2>
+                        <p>The theme includes full support for all Ghost content cards including galleries, bookmarks, callouts, and video embeds.</p>
+
+                        <div class="kg-callout-card">
+                            <p><strong>Callout Card:</strong> This is an example of a Ghost callout card with custom styling and accent border.</p>
+                        </div>
+
+                        <h3>Table Example</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Status</th>
+                                    <th>WCAG Level</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Dark Mode</td>
+                                    <td>Complete</td>
+                                    <td>AA</td>
+                                </tr>
+                                <tr>
+                                    <td>Accessibility</td>
+                                    <td>Complete</td>
+                                    <td>AA</td>
+                                </tr>
+                                <tr>
+                                    <td>Animations</td>
+                                    <td>Complete</td>
+                                    <td>Respects reduced motion</td>
+                                </tr>
+                                <tr>
+                                    <td>Performance</td>
+                                    <td>Optimized</td>
+                                    <td>Lazy loading enabled</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <hr>
+
+                        <h2>Interactive Elements</h2>
+                        <p>Try clicking the <strong>theme toggle button</strong> (sun/moon icon) in the header to switch between light and dark modes. The theme remembers your preference using localStorage.</p>
+
+                        <p><a href="#test">This is a link</a> with proper hover states and focus indicators for accessibility. Press <kbd>Tab</kbd> to navigate with keyboard.</p>
+
+                        <p><mark>Highlighted text</mark> uses the accent color for emphasis.</p>
+
+                        <p>Try pressing <code>Shift+Tab</code> when at the top of the page to reveal the skip-to-content link!</p>
+
+                        <h3>Build Statistics</h3>
+                        <ul>
+                            <li>CSS: 49KB (minified)</li>
+                            <li>JavaScript: 4.9KB (minified)</li>
+                            <li>Total SCSS: 2,551 lines</li>
+                            <li>42 responsive media queries</li>
+                            <li>Progress: 62% complete (108/173 tasks)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Share Buttons -->
+                    <div class="share-buttons my-8">
+                        <h4 class="share-title">Share this post</h4>
+                        <div class="share-buttons-list">
+                            <a href="#" class="share-button share-twitter" target="_blank" rel="noopener">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                                </svg>
+                                <span>Twitter</span>
+                            </a>
+                            <a href="#" class="share-button share-facebook" target="_blank" rel="noopener">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                                </svg>
+                                <span>Facebook</span>
+                            </a>
+                            <button class="share-button share-copy" data-url="https://example.com/preview">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                                </svg>
+                                <span class="share-copy-text">Copy Link</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Post Footer -->
+                    <footer class="post-footer my-12 py-8 border-t">
+                        <div class="post-tags mb-8">
+                            <h3 class="text-sm font-semibold mb-4 text-secondary">Tagged in:</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <a href="#" class="tag-badge inline-block px-4 py-2 rounded-full text-sm bg-secondary border">Ghost Theme</a>
+                                <a href="#" class="tag-badge inline-block px-4 py-2 rounded-full text-sm bg-secondary border">Design</a>
+                                <a href="#" class="tag-badge inline-block px-4 py-2 rounded-full text-sm bg-secondary border">Typography</a>
+                                <a href="#" class="tag-badge inline-block px-4 py-2 rounded-full text-sm bg-secondary border">Accessibility</a>
+                            </div>
+                        </div>
+
+                        <div class="author-box flex gap-6 p-6 rounded-lg bg-secondary">
+                            <div class="author-info">
+                                <h3 class="author-name font-bold mb-2">
+                                    <a href="#">Vibology Theme</a>
+                                </h3>
+                                <p class="author-bio text-secondary">A modern, elegant Ghost theme with dark mode support, comprehensive accessibility features, and beautiful typography using Cabin font.</p>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </article>
+        </main>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <!-- Footer Info -->
+                    <div class="footer-section footer-info">
+                        <h3 class="footer-title">Vibology</h3>
+                        <p class="footer-description">A modern, elegant Ghost theme with dark mode and membership support.</p>
+                    </div>
+
+                    <!-- Footer Navigation -->
+                    <div class="footer-section footer-nav">
+                        <h4 class="footer-section-title">Navigate</h4>
+                        <nav aria-label="Footer navigation">
+                            <ul>
+                                <li><a href="#home">Home</a></li>
+                                <li><a href="#about">About</a></li>
+                                <li><a href="#contact">Contact</a></li>
+                                <li><a href="#privacy">Privacy</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <!-- Footer Subscribe -->
+                    <div class="footer-section footer-subscribe">
+                        <h4 class="footer-section-title">Subscribe</h4>
+                        <p class="footer-subscribe-text">Get the latest posts delivered right to your inbox.</p>
+                        <form class="subscribe-form">
+                            <input class="subscribe-input" type="email" placeholder="Your email address" required aria-label="Email address">
+                            <button class="subscribe-button" type="submit">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Footer Bottom -->
+                <div class="footer-bottom">
+                    <p class="footer-copyright">
+                        &copy; 2026 Vibology Theme Preview. All rights reserved.
+                    </p>
+                    <p class="footer-credits">
+                        Published with <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+        </svg>
+    </button>
+
+    <!-- Prism.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="assets/js/bundle.js"></script>
+</body>
+</html>

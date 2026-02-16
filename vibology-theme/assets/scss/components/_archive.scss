@@ -1,0 +1,350 @@
+// ============================================
+// Archive Pages (Tag & Author)
+// ============================================
+
+@use '../variables' as *;
+
+.archive-header {
+  position: relative;
+  max-width: var(--container-width);
+  margin: 0 auto $space-12 auto;
+}
+
+// --------------------------------------------
+// Tag Page Layout
+// --------------------------------------------
+
+.tag-main-content {
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+}
+
+.tag-header-card {
+  margin-bottom: 0;
+  overflow: hidden;
+}
+
+.tag-hero-image-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 780px;
+  height: 200px;
+  margin: 0 auto $space-6 auto;
+  overflow: hidden;
+  border-radius: $radius-lg;
+}
+
+.tag-hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tag-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+}
+
+.tag-hero-badge {
+  position: absolute;
+  top: $space-4;
+  left: $space-4;
+  z-index: 3;
+  display: inline-block;
+  padding: $space-2 $space-4;
+  font-size: 1.2rem; // 50% larger than previous 0.8rem
+  font-weight: $font-semibold;
+  color: white;
+  background-color: rgba(26, 26, 26, 0.7); // #1a1a1a at 70% opacity
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  border-radius: $radius-full;
+  text-decoration: none;
+
+  @media (min-width: $breakpoint-md) {
+    top: $space-6;
+    left: $space-6;
+    font-size: 1.35rem; // 50% larger than previous 0.9rem
+  }
+}
+
+.tag-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.tag-hero-content-below {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-top: $space-6;
+}
+
+.tag-hero-title {
+  font-size: $text-3xl;
+  font-weight: $font-bold;
+  line-height: $leading-tight;
+  color: var(--color-text);
+  margin-bottom: $space-3;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: $text-4xl;
+  }
+}
+
+.tag-hero-description {
+  font-size: $text-lg;
+  line-height: $leading-relaxed;
+  color: var(--color-text-secondary);
+}
+
+// Tag Posts Section
+.tag-posts {
+  margin-bottom: 0;
+}
+
+.tag-posts-title {
+  font-size: $text-2xl;
+  font-weight: $font-bold;
+  color: var(--color-text);
+  margin-bottom: $space-6;
+  text-align: center;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: $text-3xl;
+  }
+}
+
+// --------------------------------------------
+// Archive Cover Image (fallback for non-tag archives)
+// --------------------------------------------
+
+.archive-cover {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  margin-bottom: $space-8;
+  overflow: hidden;
+  border-radius: $radius-lg;
+
+  @media (min-width: $breakpoint-md) {
+    height: 250px;
+  }
+}
+
+.archive-cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+// --------------------------------------------
+// Archive Header Content
+// --------------------------------------------
+
+.archive-header-content {
+  text-align: center;
+}
+
+.archive-label {
+  display: inline-block;
+  font-size: $text-xs;
+  font-weight: $font-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-accent);
+  margin-bottom: $space-3;
+}
+
+.archive-title {
+  font-size: $text-4xl;
+  font-weight: $font-bold;
+  line-height: $leading-tight;
+  color: var(--color-text);
+  margin-bottom: $space-4;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: $text-5xl;
+  }
+}
+
+.archive-description {
+  font-size: $text-lg;
+  line-height: $leading-relaxed;
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto $space-6;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: $text-xl;
+  }
+}
+
+.archive-meta {
+  font-size: $text-sm;
+  color: var(--color-text-secondary);
+  margin-top: $space-4;
+}
+
+// --------------------------------------------
+// Archive Feed
+// --------------------------------------------
+
+.archive-feed {
+  max-width: var(--container-width);
+  margin: 0 auto;
+}
+
+// --------------------------------------------
+// Author-Specific Styles
+// --------------------------------------------
+
+.author-header-content {
+  text-align: center;
+}
+
+.author-avatar-large {
+  width: 120px;
+  height: 120px;
+  border-radius: $radius-full;
+  border: 4px solid var(--color-bg-secondary);
+  object-fit: cover;
+  margin: 0 auto $space-6;
+  display: block;
+
+  @media (min-width: $breakpoint-md) {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+.author-info {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.author-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: $space-4;
+  margin-top: $space-6;
+  margin-bottom: $space-4;
+
+  a,
+  span {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    font-size: $text-sm;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color $transition-fast;
+
+    svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      color: var(--color-accent);
+      text-decoration: none;
+    }
+  }
+
+  .author-location {
+    cursor: default;
+
+    &:hover {
+      color: var(--color-text-secondary);
+    }
+  }
+
+  .author-twitter,
+  .author-facebook,
+  .author-linkedin,
+  .author-bluesky,
+  .author-threads,
+  .author-mastodon,
+  .author-tiktok,
+  .author-youtube,
+  .author-instagram {
+    svg {
+      fill: currentColor;
+    }
+  }
+}
+
+.author-stats {
+  display: flex;
+  justify-content: center;
+  gap: $space-8;
+  margin: $space-4 0 0 0;
+  padding: 0;
+}
+
+.author-stat {
+  text-align: center;
+}
+
+.author-stat-value {
+  display: block;
+  font-size: $text-3xl;
+  font-weight: $font-bold;
+  color: var(--color-accent);
+  line-height: 1;
+  margin-bottom: $space-2;
+}
+
+.author-stat-label {
+  display: block;
+  font-size: $text-sm;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+// --------------------------------------------
+// Author Main Content Wrapper
+// --------------------------------------------
+
+.author-main-content {
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+}
+
+.author-header-card {
+  margin-bottom: 0;
+}
+
+.author-posts {
+  margin-bottom: 0;
+}
+
+.author-posts-title {
+  font-size: $text-2xl;
+  font-weight: $font-bold;
+  color: var(--color-text);
+  margin-bottom: $space-6;
+  text-align: center;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: $text-3xl;
+  }
+}

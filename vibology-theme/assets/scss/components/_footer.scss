@@ -1,0 +1,210 @@
+// ============================================
+// Footer Component
+// ============================================
+
+@use '../variables' as *;
+
+.site-footer {
+  background-color: var(--color-bg-secondary);
+  border-top: 1px solid var(--color-border);
+  padding: $space-6 0;
+  margin-top: $space-20;
+}
+
+// --------------------------------------------
+// Mobile-only Content (Newsletter + Social)
+// --------------------------------------------
+
+.footer-mobile-content {
+  display: flex;
+  justify-content: center;
+  margin-bottom: $space-8;
+  padding-bottom: $space-8;
+  border-bottom: 1px solid var(--color-border);
+
+  // Hide on desktop (sidebar visible)
+  @media (min-width: $breakpoint-lg) {
+    display: none;
+  }
+}
+
+// --------------------------------------------
+// Newsletter Section
+// --------------------------------------------
+
+.footer-newsletter {
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
+
+.footer-newsletter-text {
+  color: var(--color-text-secondary);
+  font-size: $text-sm;
+  line-height: $leading-relaxed;
+  margin-bottom: $space-6;
+}
+
+.footer-subscribe-form {
+  display: flex;
+  margin: 0 auto $space-8;
+  max-width: 400px;
+}
+
+.footer-subscribe-input {
+  flex: 1;
+  padding: $space-3 $space-5;
+  font-size: $text-sm;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: $radius-full 0 0 $radius-full;
+  transition: border-color $transition-fast;
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-accent);
+  }
+
+  &::placeholder {
+    color: var(--color-text-secondary);
+  }
+}
+
+.footer-subscribe-button {
+  padding: $space-3 $space-6;
+  font-size: $text-sm;
+  font-weight: $font-bold;
+  color: white;
+  background: linear-gradient(180deg, $iridescent-cyan 0%, $iridescent-lavender 35%, $iridescent-pearl 100%);
+  background-size: 200% 200%;
+  border: none;
+  border-radius: 0 $radius-full $radius-full 0;
+  cursor: pointer;
+  transition: box-shadow $transition-fast;
+  white-space: nowrap;
+  box-shadow: $iridescent-glow;
+
+  &:hover {
+    animation: iridescent-shimmer 3s ease-in-out infinite;
+    color: white !important;
+    -webkit-text-fill-color: white !important;
+    box-shadow: $iridescent-glow-strong;
+  }
+}
+
+// --------------------------------------------
+// Follow Us Section
+// --------------------------------------------
+
+.footer-follow {
+  margin-top: $space-6;
+}
+
+.footer-follow-title {
+  font-size: $text-base;
+  font-weight: $font-bold;
+  color: var(--color-text);
+  margin-bottom: $space-4;
+}
+
+.footer-social-links {
+  display: flex;
+  gap: $space-3;
+  justify-content: center;
+}
+
+.footer-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: var(--color-bg);
+  border-radius: 50%;
+  color: var(--color-text);
+  text-decoration: none;
+  transition: all $transition-base;
+
+  svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    transition: transform $transition-base;
+  }
+
+  &:hover {
+    background: linear-gradient(180deg, $iridescent-cyan 0%, $iridescent-lavender 35%, $iridescent-pearl 100%);
+    background-size: 200% 200%;
+    animation: iridescent-shimmer 3s ease-in-out infinite;
+    color: white !important;
+    -webkit-text-fill-color: white !important;
+    transform: translateY(-2px);
+    box-shadow: $iridescent-glow;
+    text-decoration: none;
+
+    svg {
+      transform: scale(1.1);
+    }
+  }
+}
+
+// --------------------------------------------
+// Footer Bottom - Legal Links Bar
+// --------------------------------------------
+
+.footer-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-legal {
+  margin: 0;
+  font-size: $text-xs;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+
+  a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: var(--color-accent);
+    }
+  }
+}
+
+.footer-legal-line {
+  display: inline;
+  white-space: nowrap;
+
+  // Stack on mobile
+  @media (max-width: $breakpoint-sm) {
+    display: block;
+    margin-bottom: $space-1;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // Add separator between lines on desktop only
+  &:not(:last-child)::after {
+    content: '|';
+    margin: 0 $space-2;
+    opacity: 0.5;
+
+    @media (max-width: $breakpoint-sm) {
+      display: none;
+    }
+  }
+}
+
+.footer-separator {
+  margin: 0 $space-2;
+  color: var(--color-text-secondary);
+  opacity: 0.5;
+}

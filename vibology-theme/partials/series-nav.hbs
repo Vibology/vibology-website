@@ -1,0 +1,65 @@
+{{!-- Post Series Navigation --}}
+{{!-- Detects series using internal tags (e.g., #series-getting-started) --}}
+{{!-- Format: #series-{series-name} --}}
+
+{{#post}}
+  {{!-- Find series tag (internal tag starting with #series-) --}}
+  {{#foreach tags}}
+    {{#if visibility}}{{!-- Internal tag check --}}
+      {{#match name "^#series-"}}
+        {{!-- This is a series tag --}}
+        {{#get "posts" filter="tag:{{slug}}" include="tags" order="published_at asc"}}
+          {{#if posts}}
+            {{#if posts.[1]}}{{!-- Only show if series has more than 1 post --}}
+              <div class="series-nav">
+                <div class="series-nav-header">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="8" y1="6" x2="21" y2="6"></line>
+                    <line x1="8" y1="12" x2="21" y2="12"></line>
+                    <line x1="8" y1="18" x2="21" y2="18"></line>
+                    <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                    <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                    <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                  </svg>
+                  <span class="series-nav-title">
+                    This post is part of a series:
+                    <strong>{{name}}</strong>
+                  </span>
+                </div>
+
+                {{!-- Progress bar --}}
+                <div class="series-progress">
+                  <div class="series-progress-bar" style="width: calc({{@index}} / {{posts.length}} * 100%)"></div>
+                </div>
+
+                {{!-- Series posts list --}}
+                <div class="series-list">
+                  {{#foreach posts}}
+                    <div class="series-item {{#if current}}series-item-current{{/if}}">
+                      <span class="series-item-number">{{@number}}</span>
+                      <div class="series-item-content">
+                        {{#if current}}
+                          <span class="series-item-title series-item-title-current">
+                            {{title}}
+                            <span class="series-item-badge">You are here</span>
+                          </span>
+                        {{else}}
+                          <a href="{{url}}" class="series-item-title">
+                            {{title}}
+                          </a>
+                        {{/if}}
+                        {{#if excerpt}}
+                          <p class="series-item-excerpt">{{excerpt words="15"}}</p>
+                        {{/if}}
+                      </div>
+                    </div>
+                  {{/foreach}}
+                </div>
+              </div>
+            {{/if}}
+          {{/if}}
+        {{/get}}
+      {{/match}}
+    {{/if}}
+  {{/foreach}}
+{{/post}}

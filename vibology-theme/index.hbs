@@ -1,0 +1,30 @@
+{{!< default}}
+
+{{!-- Homepage Template --}}
+
+<div class="home-page">
+    {{!-- Featured Post (floating card) --}}
+    {{#get "posts" filter="featured:true" limit="1"}}
+        {{#if posts}}
+        <div class="content-card content-card-constrained mb-8">
+            {{#foreach posts}}
+                {{> "post-card-featured"}}
+            {{/foreach}}
+        </div>
+        {{/if}}
+    {{/get}}
+
+    {{!-- Post Feed (floating card) --}}
+    <div class="content-card content-card-constrained">
+        <section class="py-8 px-4">
+            <div class="post-feed post-feed-vertical">
+                {{#foreach posts}}
+                    {{> "post-card"}}
+                {{/foreach}}
+            </div>
+
+            {{!-- Pagination --}}
+            {{> "pagination"}}
+        </section>
+    </div>
+</div>

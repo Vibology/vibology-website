@@ -1,0 +1,19 @@
+{{!-- Custom Navigation Partial --}}
+{{!-- Called by {{navigation}} helper - uses {{#foreach navigation}} context --}}
+{{!-- Renders secondary nav as dropdowns, then primary nav items --}}
+
+<ul>
+{{!-- First render secondary navigation items (hidden, for JS to process) --}}
+{{#if isSecondary}}
+    {{#foreach navigation}}
+    <li class="nav-secondary-item" data-label="{{label}}" data-url="{{url}}" data-current="{{#if current}}true{{else}}false{{/if}}" style="display:none;"></li>
+    {{/foreach}}
+{{else}}
+    {{!-- Primary navigation items --}}
+    {{#foreach navigation}}
+    <li class="nav-{{slug}}{{#if current}} nav-current{{/if}}">
+        <a href="{{url}}"{{#if current}} class="nav-current"{{/if}}>{{label}}</a>
+    </li>
+    {{/foreach}}
+{{/if}}
+</ul>

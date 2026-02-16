@@ -1,0 +1,91 @@
+{{!-- Featured Content Slider (Custom Implementation) --}}
+{{#get "posts" limit="5" filter="featured:true" include="tags,authors"}}
+  {{#if posts}}
+  <div class="featured-slider-wrapper">
+    <div class="featured-slider" role="region" aria-label="Featured posts" aria-live="polite">
+      {{!-- Slides --}}
+      <div class="slider-track">
+        {{#foreach posts}}
+        <div class="slider-slide{{#if @first}} is-active{{/if}}" data-index="{{@index}}">
+          <div class="featured-slide">
+            {{!-- Text content on left --}}
+            <div class="featured-slide-content">
+              <h2 class="featured-slide-title">
+                <a href="{{url}}">{{title}}</a>
+              </h2>
+
+              {{#if custom_excerpt}}
+              <p class="featured-slide-excerpt">{{custom_excerpt}}</p>
+              {{else}}{{#if excerpt}}
+              <p class="featured-slide-excerpt">{{excerpt words="30"}}</p>
+              {{/if}}{{/if}}
+
+              <div class="featured-slide-meta">
+                {{#primary_author}}
+                <a href="{{url}}" class="featured-slide-author">
+                  {{#if profile_image}}
+                  <img src="{{img_url profile_image size="xs"}}" alt="{{name}}" class="featured-slide-author-image">
+                  {{/if}}
+                  <span>{{name}}</span>
+                </a>
+                <span class="featured-slide-separator">•</span>
+                {{/primary_author}}
+                <span class="meta-item">
+                  {{> "icons/calendar"}}
+                  <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM DD, YYYY"}}</time>
+                </span>
+                {{#if reading_time}}
+                <span class="featured-slide-separator">•</span>
+                <span class="meta-item">
+                  {{> "icons/clock"}}
+                  <span>{{reading_time}}</span>
+                </span>
+                {{/if}}
+              </div>
+
+              {{#primary_tag}}<a href="{{url}}" class="tag">{{name}}</a>{{/primary_tag}}
+            </div>
+
+            {{!-- Image card on right --}}
+            {{#if feature_image}}
+            <div class="featured-slide-image-wrapper">
+              <a href="{{url}}" class="featured-slide-image-card">
+                <img
+                  srcset="{{img_url feature_image size="m"}} 750w,
+                          {{img_url feature_image size="l"}} 1200w,
+                          {{img_url feature_image size="xl"}} 2000w"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  src="{{img_url feature_image size="l"}}"
+                  alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                  loading="{{#if @first}}eager{{else}}lazy{{/if}}"
+                >
+              </a>
+            </div>
+            {{/if}}
+          </div>
+        </div>
+        {{/foreach}}
+      </div>
+
+      {{!-- Navigation Arrows (positioned over image area) --}}
+      <button class="slider-prev" aria-label="Previous slide">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <button class="slider-next" aria-label="Next slide">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+
+      {{!-- Pagination Dots --}}
+      <div class="slider-pagination">
+        {{#foreach posts}}
+        <button class="slider-dot{{#if @first}} is-active{{/if}}" data-index="{{@index}}" aria-label="Go to slide"></button>
+        {{/foreach}}
+      </div>
+    </div>
+  </div>
+  {{/if}}
+{{/get}}

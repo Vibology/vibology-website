@@ -1,0 +1,48 @@
+{{!< default}}
+
+{{!-- Single Page Template --}}
+
+{{#page}}
+<div class="post-content-wrapper">
+    {{!-- Main Page Content --}}
+    <article class="page-full {{post_class}} content-card">
+        <div class="post-article-inner">
+            {{!-- Feature image at top --}}
+            {{#if @page.show_title_and_feature_image}}
+            {{#if feature_image}}
+            <figure class="page-feature-image">
+                <img
+                    src="{{feature_image}}"
+                    alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                >
+                {{#if feature_image_caption}}
+                <figcaption class="text-center text-sm text-secondary mt-4">
+                    {{feature_image_caption}}
+                </figcaption>
+                {{/if}}
+            </figure>
+            {{/if}}
+
+            {{!-- Page header --}}
+            <header class="page-header">
+                <h1 class="page-title">{{title}}</h1>
+
+                {{#if custom_excerpt}}
+                <p class="page-excerpt">
+                    {{custom_excerpt}}
+                </p>
+                {{/if}}
+            </header>
+            {{/if}}
+
+            {{!-- Page content --}}
+            <div class="page-content">
+                {{content}}
+            </div>
+        </div>
+    </article>
+
+    {{!-- Sidebar --}}
+    {{> "sidebar"}}
+</div>
+{{/page}}

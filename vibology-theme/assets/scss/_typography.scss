@@ -1,0 +1,407 @@
+// ============================================
+// Typography & Base Element Styles
+// ============================================
+
+@use 'variables' as *;
+
+// Import Cabin font from Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
+// --------------------------------------------
+// Base Typography
+// --------------------------------------------
+
+body {
+  font-family: var(--font-sans);
+  font-size: $text-base;
+  line-height: $leading-normal;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// --------------------------------------------
+// Headings
+// --------------------------------------------
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: $font-bold;
+  line-height: $leading-tight;
+  color: var(--color-text);
+  margin-bottom: $space-4;
+}
+
+h1 {
+  font-size: $text-4xl;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: $text-5xl;
+  }
+}
+
+h2 {
+  font-size: $text-3xl;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: $text-4xl;
+  }
+}
+
+h3 {
+  font-size: $text-2xl;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: $text-3xl;
+  }
+}
+
+h4 {
+  font-size: $text-xl;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: $text-2xl;
+  }
+}
+
+h5 {
+  font-size: $text-lg;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: $text-xl;
+  }
+}
+
+h6 {
+  font-size: $text-base;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: $text-lg;
+  }
+}
+
+// --------------------------------------------
+// Paragraphs
+// --------------------------------------------
+
+p {
+  margin-bottom: $space-6;
+  line-height: $leading-relaxed;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// --------------------------------------------
+// Links
+// --------------------------------------------
+
+a {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: all var(--transition);
+
+  &:hover {
+    color: var(--color-accent);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
+
+// Button text should always be white
+button a,
+.member-signup-btn,
+.form-submit,
+.pagination-load-more,
+.footer-subscribe-button,
+.sidebar-subscribe-button,
+.newsletter-popup-button,
+.back-to-top {
+  color: white !important;
+  -webkit-text-fill-color: white !important;
+
+  &:hover {
+    color: white !important;
+    -webkit-text-fill-color: white !important;
+  }
+}
+
+// Animated underline for content links (posts, pages)
+.post-content a:not(.kg-bookmark-container):not(.tag),
+.page-content a {
+  position: relative;
+  text-decoration: none;
+  color: var(--color-accent);
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-accent);
+    transition: width $transition-base ease-out;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+// --------------------------------------------
+// Lists
+// --------------------------------------------
+
+ul, ol {
+  margin-bottom: $space-6;
+  padding-left: $space-8;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+ul {
+  list-style-type: disc;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+li {
+  margin-bottom: $space-2;
+  line-height: $leading-relaxed;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Nested lists
+ul ul, ul ol, ol ul, ol ol {
+  margin-top: $space-2;
+  margin-bottom: $space-2;
+}
+
+// --------------------------------------------
+// Blockquotes
+// --------------------------------------------
+
+blockquote {
+  margin: $space-8 0;
+  padding: $space-6 $space-8;
+  border-left: 4px solid var(--color-accent);
+  background-color: var(--color-bg-secondary);
+  font-style: italic;
+
+  p {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  cite {
+    display: block;
+    margin-top: $space-4;
+    font-size: $text-sm;
+    color: var(--color-text-secondary);
+    font-style: normal;
+
+    &::before {
+      content: '— ';
+    }
+  }
+}
+
+// --------------------------------------------
+// Code & Pre
+// --------------------------------------------
+
+code {
+  font-family: var(--font-mono);
+  font-size: $text-sm;
+  padding: $space-1 $space-2;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: $radius-sm;
+  color: var(--color-accent);
+}
+
+pre {
+  margin: $space-8 0;
+  padding: $space-6;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: $radius;
+  overflow-x: auto;
+
+  code {
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: $text-sm;
+    color: var(--color-text);
+  }
+}
+
+// --------------------------------------------
+// Horizontal Rule
+// --------------------------------------------
+
+hr {
+  margin: $space-12 0;
+  border: 0;
+  border-top: 1px solid var(--color-border);
+}
+
+// --------------------------------------------
+// Tables
+// --------------------------------------------
+
+table {
+  width: 100%;
+  margin: $space-8 0;
+  border-collapse: collapse;
+  font-size: $text-sm;
+}
+
+thead {
+  background-color: var(--color-bg-secondary);
+  border-bottom: 2px solid var(--color-border);
+}
+
+th {
+  padding: $space-3 $space-4;
+  text-align: left;
+  font-weight: $font-semibold;
+  color: var(--color-text);
+}
+
+td {
+  padding: $space-3 $space-4;
+  border-bottom: 1px solid var(--color-border);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background-color: var(--color-bg-secondary);
+}
+
+// --------------------------------------------
+// Inline Elements
+// --------------------------------------------
+
+strong, b {
+  font-weight: $font-bold;
+}
+
+em, i {
+  font-style: italic;
+}
+
+small {
+  font-size: $text-sm;
+}
+
+mark {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-accent);
+  padding: $space-1 $space-2;
+  border-radius: $radius-sm;
+}
+
+del {
+  text-decoration: line-through;
+  color: var(--color-text-secondary);
+}
+
+abbr[title] {
+  text-decoration: underline dotted;
+  cursor: help;
+}
+
+// --------------------------------------------
+// Form Typography
+// --------------------------------------------
+
+label {
+  display: block;
+  margin-bottom: $space-2;
+  font-weight: $font-medium;
+  font-size: $text-sm;
+  color: var(--color-text);
+}
+
+input, textarea, select {
+  font-size: $text-base;
+  line-height: $leading-normal;
+}
+
+// --------------------------------------------
+// Utility Classes
+// --------------------------------------------
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-sm {
+  font-size: $text-sm;
+}
+
+.text-base {
+  font-size: $text-base;
+}
+
+.text-lg {
+  font-size: $text-lg;
+}
+
+.text-xl {
+  font-size: $text-xl;
+}
+
+.font-light {
+  font-weight: $font-light;
+}
+
+.font-normal {
+  font-weight: $font-regular;
+}
+
+.font-medium {
+  font-weight: $font-medium;
+}
+
+.font-semibold {
+  font-weight: $font-semibold;
+}
+
+.font-bold {
+  font-weight: $font-bold;
+}
+
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.text-accent {
+  color: var(--color-accent);
+}

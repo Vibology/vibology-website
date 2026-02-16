@@ -1,0 +1,138 @@
+{{!-- Mobile Navigation Partial --}}
+<ul class="mobile-nav-list">
+{{!-- Book a Reading (primary CTA) --}}
+{{#unless @member}}
+    {{#if @site.members_enabled}}
+    <li class="mobile-member-actions">
+        <a href="{{@site.url}}/book-a-reading" class="mobile-signup-btn">
+            Book a Reading
+        </a>
+    </li>
+    {{/if}}
+{{/unless}}
+
+{{!-- Secondary navigation items (for dropdowns) - uses navigation helper for proper URLs --}}
+<li class="nav-secondary-container" style="display:none;">
+    {{navigation type="secondary"}}
+</li>
+{{!-- Primary navigation items --}}
+{{navigation}}
+</ul>
+
+<script>
+// Reorganize mobile navigation and add click handlers
+(function() {
+    var ul = document.querySelector('.mobile-nav .mobile-nav-list');
+    if (!ul) return;
+
+    // Find the secondary nav container and its nested ul
+    var secondaryContainer = ul.querySelector('.nav-secondary-container');
+    var secondaryUl = secondaryContainer ? secondaryContainer.querySelector('ul') : null;
+    var secondaryItems = secondaryUl ? secondaryUl.querySelectorAll('.nav-secondary-item') : [];
+
+    // Find the primary nav ul (last ul that's a direct child)
+    var primaryUl = ul.querySelector(':scope > ul:last-of-type');
+
+    var dropdowns = {};
+
+    // Group secondary items by dropdown name
+    secondaryItems.forEach(function(item) {
+        var label = item.getAttribute('data-label');
+        var url = item.getAttribute('data-url');
+        var current = item.getAttribute('data-current') === 'true';
+
+        if (label && label.indexOf('|') !== -1) {
+            var parts = label.split('|');
+            var dropdownName = parts[0].trim();
+            var itemLabel = parts[1].trim();
+
+            if (!dropdowns[dropdownName]) {
+                dropdowns[dropdownName] = [];
+            }
+            dropdowns[dropdownName].push({
+                label: itemLabel,
+                url: url,
+                current: current
+            });
+        }
+    });
+
+    // Remove the secondary container
+    if (secondaryContainer) secondaryContainer.remove();
+
+    // Get primary items from the primary ul
+    var primaryItems = primaryUl ? primaryUl.querySelectorAll('li') : [];
+    var insertTarget = primaryItems.length > 0 ? primaryItems[0] : null;
+
+    for (var name in dropdowns) {
+        if (dropdowns.hasOwnProperty(name)) {
+            var items = dropdowns[name];
+            var li = document.createElement('li');
+            li.className = 'has-dropdown';
+
+            var toggle = document.createElement('a');
+            toggle.href = '#';
+            toggle.className = 'dropdown-toggle';
+            toggle.setAttribute('role', 'button');
+            toggle.setAttribute('aria-expanded', 'false');
+            toggle.textContent = name;
+
+            // Add click handler directly
+            toggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                var parentLi = this.parentElement;
+                var isOpen = parentLi.classList.contains('dropdown-open');
+
+                // Close other dropdowns
+                ul.querySelectorAll('.has-dropdown.dropdown-open').forEach(function(item) {
+                    if (item !== parentLi) {
+                        item.classList.remove('dropdown-open');
+                        item.querySelector('a').setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                // Toggle this dropdown
+                parentLi.classList.toggle('dropdown-open');
+                this.setAttribute('aria-expanded', !isOpen);
+            });
+
+            var dropdown = document.createElement('ul');
+            dropdown.className = 'nav-dropdown';
+
+            items.forEach(function(item) {
+                var dropdownLi = document.createElement('li');
+
+                var link = document.createElement('a');
+                link.href = item.url;
+                if (item.current) {
+                    link.className = 'nav-current';
+                }
+                link.textContent = item.label;
+
+                dropdownLi.appendChild(link);
+                dropdown.appendChild(dropdownLi);
+            });
+
+            li.appendChild(toggle);
+            li.appendChild(dropdown);
+
+            if (primaryUl && insertTarget) {
+                primaryUl.insertBefore(li, insertTarget);
+            } else if (primaryUl) {
+                primaryUl.appendChild(li);
+            }
+        }
+    }
+
+    // Unwrap the primary ul (move its children to the main nav list)
+    if (primaryUl && ul) {
+        while (primaryUl.firstChild) {
+            ul.appendChild(primaryUl.firstChild);
+        }
+        primaryUl.remove();
+    }
+
+    // Remove the identifying class now that we're done
+    ul.classList.remove('mobile-nav-list');
+})();
+</script>

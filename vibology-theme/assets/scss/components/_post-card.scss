@@ -1,0 +1,377 @@
+// ============================================
+// Post Card Component
+// ============================================
+
+@use '../variables' as *;
+
+.post-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg-secondary);
+  border-radius: $radius-lg;
+  overflow: hidden;
+  box-shadow: 0 1px 3px 0 var(--color-shadow);
+  transition: all $transition-base;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px var(--color-shadow), 0 10px 10px -5px var(--color-shadow);
+  }
+}
+
+// --------------------------------------------
+// Post Card Image
+// --------------------------------------------
+
+.post-card-image-link {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-bg-secondary);
+  aspect-ratio: 16 / 9;
+
+  &:hover {
+    text-decoration: none;
+
+    .post-card-image {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.post-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform $transition-slow;
+}
+
+// --------------------------------------------
+// Post Card Content
+// --------------------------------------------
+
+.post-card-content {
+  padding: $space-6;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  @media (min-width: $breakpoint-md) {
+    padding: $space-8;
+  }
+}
+
+// Tag margin now in _utilities.scss
+
+.post-card-title {
+  font-size: $text-lg;
+  font-weight: $font-bold;
+  line-height: $leading-tight;
+  margin-bottom: $space-4;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: $text-xl;
+  }
+
+  a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color $transition-base;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+    &:hover {
+      color: var(--color-accent);
+      text-decoration: none;
+    }
+  }
+}
+
+.post-card-excerpt {
+  color: var(--color-text-secondary);
+  font-size: $text-sm;
+  line-height: $leading-relaxed;
+  margin-bottom: $space-4;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// --------------------------------------------
+// Post Card Meta (Two-Line Layout)
+// --------------------------------------------
+
+.post-card-meta-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+  margin-bottom: $space-4;
+  padding-top: $space-4;
+  border-top: 1px solid var(--color-border);
+}
+
+.post-card-author {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+
+  .author-avatar-small {
+    width: 20px;
+    height: 20px;
+    border-radius: $radius-full;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .author-name {
+    font-weight: $font-medium;
+    color: var(--color-text-secondary);
+    font-size: $text-sm;
+  }
+}
+
+.post-card-meta-dates {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: $space-2;
+  font-size: $text-sm;
+  color: var(--color-text-secondary);
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+
+    svg {
+      width: 12px;
+      height: 12px;
+      flex-shrink: 0;
+    }
+  }
+
+  time {
+    display: inline-block;
+  }
+
+  .reading-time {
+    display: inline-block;
+  }
+}
+
+.post-card-separator {
+  color: var(--color-text-secondary);
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+// --------------------------------------------
+// Horizontal Post Card
+// --------------------------------------------
+
+.post-card-horizontal {
+  flex-direction: row;
+  background-color: var(--color-bg);
+
+  .post-card-image-link {
+    flex-shrink: 0;
+    width: 200px;
+    aspect-ratio: 4 / 3;
+
+    @media (min-width: $breakpoint-md) {
+      width: 300px;
+    }
+  }
+
+  .post-card-content {
+    padding: $space-4 $space-6;
+
+    @media (min-width: $breakpoint-md) {
+      padding: $space-6 $space-8;
+    }
+  }
+
+  .post-card-title {
+    font-size: $text-lg;
+
+    @media (min-width: $breakpoint-md) {
+      font-size: $text-xl;
+    }
+  }
+
+  // Mobile: Stack vertically
+  @media (max-width: $breakpoint-sm) {
+    flex-direction: column;
+
+    .post-card-image-link {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+    }
+  }
+}
+
+// --------------------------------------------
+// Featured Post Card (Horizontal Layout)
+// --------------------------------------------
+
+.post-card-featured {
+  display: flex;
+  flex-direction: column;
+  min-height: auto;
+  background-color: var(--color-bg-secondary);
+
+  @media (min-width: $breakpoint-md) {
+    flex-direction: row;
+    min-height: 300px;
+  }
+
+  .post-card-content {
+    flex: 1;
+    padding: $space-8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @media (min-width: $breakpoint-md) {
+      padding: $space-10;
+      order: 1;
+    }
+
+    @media (min-width: $breakpoint-lg) {
+      padding: $space-12;
+    }
+  }
+
+  .post-card-image-link {
+    flex-shrink: 0;
+    width: 100%;
+    height: 250px;
+    aspect-ratio: auto;
+
+    @media (min-width: $breakpoint-md) {
+      order: 2;
+      width: 50%;
+      height: auto;
+    }
+
+    @media (min-width: $breakpoint-lg) {
+      width: 45%;
+    }
+  }
+
+  .post-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .post-card-title {
+    font-size: $text-2xl;
+    margin-bottom: $space-4;
+
+    @media (min-width: $breakpoint-md) {
+      font-size: $text-3xl;
+    }
+
+    @media (min-width: $breakpoint-lg) {
+      font-size: $text-4xl;
+    }
+
+    a {
+      color: var(--color-text);
+    }
+  }
+
+  .post-card-excerpt {
+    color: var(--color-text-secondary);
+    font-size: $text-base;
+    margin-bottom: $space-6;
+
+    @media (min-width: $breakpoint-lg) {
+      font-size: $text-lg;
+    }
+  }
+
+  .post-card-meta {
+    color: var(--color-text-secondary);
+
+    .author-name {
+      color: var(--color-text-secondary);
+    }
+
+    time,
+    .reading-time {
+      color: var(--color-text-secondary);
+    }
+  }
+}
+
+// --------------------------------------------
+// Post Feed Layouts
+// --------------------------------------------
+
+.post-feed {
+  margin: 0;
+}
+
+// Vertical (Grid)
+.post-feed-vertical {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-8;
+
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// Horizontal (List)
+.post-feed-horizontal {
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+}
+
+// Masonry (CSS Columns - Pure CSS, no JavaScript needed)
+.post-feed-masonry {
+  column-gap: $space-8;
+
+  @media (min-width: $breakpoint-md) {
+    column-count: 2;
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    column-count: 3;
+  }
+
+  .post-card {
+    break-inside: avoid;
+    margin-bottom: $space-8;
+    display: inline-block;
+    width: 100%;
+  }
+
+  .post-card-image-link {
+    aspect-ratio: auto;
+    height: auto;
+  }
+}
+
+// --------------------------------------------
+// Latest Posts Section
+// --------------------------------------------
+
+.latest-posts {
+  max-width: var(--container-width);
+  margin: 0 auto;
+}

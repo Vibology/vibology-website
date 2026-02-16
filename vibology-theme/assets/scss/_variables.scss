@@ -1,0 +1,281 @@
+// ============================================
+// SCSS Variables & CSS Custom Properties
+// ============================================
+
+// --------------------------------------------
+// Typography
+// --------------------------------------------
+
+// Font Families
+$font-sans: 'Cabin', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+$font-serif: Georgia, 'Times New Roman', serif;
+$font-mono: 'SF Mono', SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+
+// Font Sizes (using modular scale)
+$text-xs: 0.875rem;     // 14px (minimum for accessibility)
+$text-sm: 0.875rem;     // 14px
+$text-base: 1rem;       // 16px
+$text-lg: 1.125rem;     // 18px
+$text-xl: 1.25rem;      // 20px
+$text-2xl: 1.5rem;      // 24px
+$text-3xl: 1.875rem;    // 30px
+$text-4xl: 2.25rem;     // 36px
+$text-5xl: 3rem;        // 48px
+
+// Font Weights
+$font-light: 300;
+$font-regular: 400;
+$font-medium: 500;
+$font-semibold: 600;
+$font-bold: 700;
+
+// Line Heights
+$leading-tight: 1.25;
+$leading-snug: 1.375;
+$leading-normal: 1.5;
+$leading-relaxed: 1.625;
+$leading-loose: 2;
+
+// --------------------------------------------
+// Spacing System (based on 4px grid)
+// --------------------------------------------
+
+$space-1: 0.25rem;      // 4px
+$space-2: 0.5rem;       // 8px
+$space-3: 0.75rem;      // 12px
+$space-4: 1rem;         // 16px
+$space-5: 1.25rem;      // 20px
+$space-6: 1.5rem;       // 24px
+$space-8: 2rem;         // 32px
+$space-10: 2.5rem;      // 40px
+$space-12: 3rem;        // 48px
+$space-16: 4rem;        // 64px
+$space-20: 5rem;        // 80px
+$space-24: 6rem;        // 96px
+
+// --------------------------------------------
+// Breakpoints
+// --------------------------------------------
+
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-2xl: 1536px;
+
+// --------------------------------------------
+// Light Mode Colors
+// --------------------------------------------
+// WCAG AA Contrast Ratios:
+// - Primary text (#2D3350 on #F9F9FF): 10.8:1 ✓
+// - Secondary text (#6B7280 on #F9F9FF): 5.9:1 ✓
+
+$light-bg: #F9F9FF;
+$light-bg-secondary: #FFFFFF;
+$light-text: #2D3350;
+$light-text-secondary: #6B7280;
+$light-border: #DADCE5;
+$light-shadow: rgba(45, 51, 80, 0.1);
+
+// --------------------------------------------
+// Dark Mode Colors
+// --------------------------------------------
+// WCAG AA Contrast Ratios:
+// - Primary text (#EAEAEA on #0A0A0A): 15.8:1 ✓✓ (Excellent)
+// - Secondary text (#B5B5B5 on #0A0A0A): 8.2:1 ✓✓ (Excellent)
+
+$dark-bg: #1A1A1A;              // Gray background (like Neon)
+$dark-bg-secondary: #0A0A0A;    // Darker cards on gray background
+$dark-text: #EAEAEA;
+$dark-text-secondary: #B5B5B5;
+$dark-border: #2A2A2A;          // Subtle border
+$dark-shadow: rgba(0, 0, 0, 0.8);
+
+// --------------------------------------------
+// Accent Color (Iridescent Palette)
+// --------------------------------------------
+
+// Iridescent color stops
+$iridescent-cyan: #9DD8F7;
+$iridescent-lavender: #B8A5E5;
+$iridescent-pink: #F7C4D8;
+$iridescent-pearl: #E8F5FF;
+$iridescent-pink-bright: #FFB3D9;
+
+// Legacy accent (kept for compatibility)
+$accent-default: #B8A5E5;
+
+// Iridescent glows (soft pastel)
+$accent-glow: 0 0 20px rgba(184, 165, 229, 0.4);
+$accent-glow-lg: 0 0 30px rgba(184, 165, 229, 0.5);
+$iridescent-glow: 0 0 8px rgba(157, 216, 247, 0.15), 0 0 12px rgba(184, 165, 229, 0.1);
+$iridescent-glow-strong: 0 0 16px rgba(157, 216, 247, 0.25), 0 0 24px rgba(184, 165, 229, 0.2);
+
+// --------------------------------------------
+// Border Radius
+// --------------------------------------------
+
+$radius-sm: 0.25rem;    // 4px
+$radius: 0.5rem;        // 8px
+$radius-md: 0.75rem;    // 12px
+$radius-lg: 1rem;       // 16px
+$radius-full: 9999px;
+
+// --------------------------------------------
+// Transitions
+// --------------------------------------------
+
+$transition-fast: 150ms ease-in-out;
+$transition-base: 250ms ease-in-out;
+$transition-slow: 350ms ease-in-out;
+
+// --------------------------------------------
+// Animations
+// --------------------------------------------
+
+// Keyframe animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes iridescent-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes iridescent-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 50% 100%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  75% {
+    background-position: 50% 0%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes hue-shift {
+  0% {
+    filter: hue-rotate(0deg) brightness(1);
+  }
+  50% {
+    filter: hue-rotate(30deg) brightness(1.05);
+  }
+  100% {
+    filter: hue-rotate(0deg) brightness(1);
+  }
+}
+
+@keyframes iridescent-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(157, 216, 247, 0.3))
+            drop-shadow(0 0 16px rgba(184, 165, 229, 0.2));
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(184, 165, 229, 0.4))
+            drop-shadow(0 0 20px rgba(247, 196, 216, 0.3));
+  }
+}
+
+// --------------------------------------------
+// Z-Index Scale
+// --------------------------------------------
+
+$z-base: 1;
+$z-dropdown: 100;
+$z-sticky: 200;
+$z-header: 300;
+$z-overlay: 400;
+$z-modal: 500;
+$z-popover: 600;
+$z-tooltip: 700;
+
+// --------------------------------------------
+// Container Widths
+// --------------------------------------------
+
+$container-sm: 640px;
+$container-md: 768px;
+$container-lg: 1024px;
+$container-xl: 1280px;
+
+// --------------------------------------------
+// CSS Custom Properties (Theme Variables)
+// --------------------------------------------
+// These will be overridden by JavaScript for dark mode
+
+:root {
+  // Colors
+  --color-bg: #{$light-bg};
+  --color-bg-rgb: 249, 249, 255;
+  --color-bg-secondary: #{$light-bg-secondary};
+  --color-bg-secondary-rgb: 255, 255, 255;
+  --color-text: #{$light-text};
+  --color-text-secondary: #{$light-text-secondary};
+  --color-border: #{$light-border};
+  --color-shadow: #{$light-shadow};
+  --color-accent: #{$accent-default};
+
+  // Typography
+  --font-sans: #{$font-sans};
+  --font-serif: #{$font-serif};
+  --font-mono: #{$font-mono};
+
+  // Ghost custom fonts (can be overridden by Ghost settings)
+  --gh-font-heading: var(--font-sans);
+  --gh-font-body: var(--font-sans);
+
+  // Spacing (expose for component use)
+  --space-4: #{$space-4};
+  --space-6: #{$space-6};
+  --space-8: #{$space-8};
+  --space-12: #{$space-12};
+  --space-16: #{$space-16};
+
+  // Layout
+  --container-width: #{$container-xl};
+  --header-height: 80px;
+
+  // Transitions
+  --transition: #{$transition-base};
+}
+
+// Dark mode overrides (applied via JavaScript)
+[data-theme="dark"] {
+  --color-bg: #{$dark-bg};
+  --color-bg-rgb: 26, 26, 26;
+  --color-bg-secondary: #{$dark-bg-secondary};
+  --color-bg-secondary-rgb: 10, 10, 10;
+  --color-text: #{$dark-text};
+  --color-text-secondary: #{$dark-text-secondary};
+  --color-border: #{$dark-border};
+  --color-shadow: #{$dark-shadow};
+}

@@ -1,0 +1,41 @@
+// ============================================
+// Pagination Component - Load More Style
+// ============================================
+
+@use '../variables' as *;
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: $space-16 0;
+  padding: $space-8 0;
+}
+
+// --------------------------------------------
+// Load More Button
+// --------------------------------------------
+
+.pagination-load-more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-4 $space-10;
+  font-size: $text-base;
+  font-weight: $font-semibold;
+  color: white;
+  background: linear-gradient(180deg, $iridescent-cyan 0%, $iridescent-lavender 35%, $iridescent-pearl 100%);
+  background-size: 200% 200%;
+  border-radius: $radius-full;
+  text-decoration: none;
+  transition: all $transition-fast;
+  box-shadow: $iridescent-glow;
+
+  &:hover {
+    animation: iridescent-shimmer 3s ease-in-out infinite;
+    color: white !important;
+    -webkit-text-fill-color: white !important;
+    transform: translateY(-2px);
+    box-shadow: $iridescent-glow-strong;
+    text-decoration: none;
+  }
+}

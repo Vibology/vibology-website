@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Build artifacts
+*.zip
+assets/css/screen.css
+assets/css/screen.css.map
+assets/js/bundle.js
+assets/js/bundle.js.map
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary files
+*.tmp
+*.temp
+*~

@@ -1,0 +1,95 @@
+// ============================================
+// Ghost Announcement Bar Styling
+// ============================================
+
+@use '../variables' as *;
+// Ghost automatically injects the announcement bar via JavaScript
+// We only need to provide custom styling for their classes
+
+// Main announcement bar container (injected by Ghost)
+#announcement-bar-root {
+  position: relative;
+  z-index: 1000;
+  animation: slideDown 0.3s ease-out;
+  background: linear-gradient(180deg, $iridescent-cyan 0%, $iridescent-lavender 35%, $iridescent-pearl 100%) !important;
+  background-size: 200% 200%;
+  animation: iridescent-shimmer 8s ease-in-out infinite;
+}
+
+// Ghost's announcement bar content wrapper and ALL inner elements
+.gh-announcement-bar-content,
+.gh-announcement-bar-content * {
+  background: transparent !important;
+  color: #FFFFFF !important;
+}
+
+.gh-announcement-bar-content {
+  padding: $space-2 $space-4 !important; // Reduced by ~20% (from 12px to 8px vertical)
+  min-height: auto !important;
+  font-family: $font-sans !important; // Cabin font
+  font-size: $text-3xl !important; // 30px (50% larger than 20px)
+  font-weight: $font-bold !important; // Bold
+  line-height: $leading-normal;
+  text-align: center;
+
+  // Support for links in announcement
+  a {
+    color: inherit;
+    text-decoration: underline;
+    font-weight: $font-semibold;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  // Support for bold text
+  strong, b {
+    font-weight: $font-bold;
+  }
+
+  // Support for italic text
+  em, i {
+    font-style: italic;
+  }
+
+  // Mobile: slightly smaller but still prominent
+  @media (max-width: $breakpoint-sm) {
+    font-size: $text-2xl !important; // 24px on mobile (50% larger than 18px would be 27px, using 24px)
+    padding: $space-1 $space-3 !important; // Reduced vertical padding
+  }
+}
+
+// Accent color preset (Ghost provides this class when accent color is selected)
+.gh-announcement-bar.accent,
+.gh-announcement-bar {
+  background: linear-gradient(180deg, $iridescent-cyan 0%, $iridescent-lavender 35%, $iridescent-pearl 100%) !important;
+  background-size: 200% 200%;
+  animation: iridescent-shimmer 8s ease-in-out infinite;
+
+  * {
+    background: transparent !important;
+  }
+}
+
+// Style the close button if Ghost provides one
+.gh-announcement-bar-close {
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+// Slide down animation
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,150 @@
+// ============================================
+// Prism.js Syntax Highlighting Overrides
+// ============================================
+
+@use '../variables' as *;
+
+// Override Prism default styles to match theme
+pre[class*="language-"] {
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: $radius;
+  margin: $space-8 0;
+  padding: $space-6;
+  overflow: auto;
+  font-size: $text-sm;
+  line-height: $leading-relaxed;
+
+  code {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--color-text);
+    font-size: $text-sm;
+  }
+}
+
+code[class*="language-"] {
+  font-family: var(--font-mono);
+  text-shadow: none;
+}
+
+// Dark mode adjustments for Prism
+[data-theme="dark"] {
+  pre[class*="language-"] {
+    background-color: #1e1e1e;
+    border-color: var(--color-border);
+  }
+
+  // Adjust token colors for dark mode
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: #6a9955;
+  }
+
+  .token.punctuation {
+    color: #d4d4d4;
+  }
+
+  .token.property,
+  .token.tag,
+  .token.boolean,
+  .token.number,
+  .token.constant,
+  .token.symbol,
+  .token.deleted {
+    color: #b5cea8;
+  }
+
+  .token.selector,
+  .token.attr-name,
+  .token.string,
+  .token.char,
+  .token.builtin,
+  .token.inserted {
+    color: #ce9178;
+  }
+
+  .token.operator,
+  .token.entity,
+  .token.url,
+  .language-css .token.string,
+  .style .token.string {
+    color: #d4d4d4;
+  }
+
+  .token.atrule,
+  .token.attr-value,
+  .token.keyword {
+    color: #c586c0;
+  }
+
+  .token.function,
+  .token.class-name {
+    color: #dcdcaa;
+  }
+
+  .token.regex,
+  .token.important,
+  .token.variable {
+    color: #d16969;
+  }
+}
+
+// Line numbers
+.line-numbers .line-numbers-rows {
+  border-right: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+}
+
+.line-numbers-rows > span:before {
+  color: var(--color-text-secondary);
+}
+
+// Toolbar (for copy button)
+div.code-toolbar {
+  position: relative;
+  margin: $space-8 0;
+}
+
+div.code-toolbar > .toolbar {
+  position: absolute;
+  top: $space-2;
+  right: $space-2;
+  opacity: 0;
+  transition: opacity $transition-fast;
+
+  button {
+    padding: $space-2 $space-3;
+    font-size: $text-xs;
+    font-weight: $font-medium;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: $radius-sm;
+    cursor: pointer;
+    transition: all $transition-fast;
+
+    &:hover {
+      background-color: var(--color-accent);
+      border-color: var(--color-accent);
+      color: white;
+    }
+  }
+}
+
+div.code-toolbar:hover > .toolbar {
+  opacity: 1;
+}
+
+// Inline code (not in pre)
+:not(pre) > code[class*="language-"] {
+  padding: $space-1 $space-2;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: $radius-sm;
+  color: var(--color-accent);
+  white-space: normal;
+}

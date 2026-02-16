@@ -1,0 +1,190 @@
+// ============================================
+// Contact Page & Form
+// ============================================
+
+@use '../variables' as *;
+
+// Prevent contact card from stretching to match sidebar height
+.page-contact.content-card {
+  align-self: start;
+}
+
+.page-contact {
+  .post-article-inner {
+    padding-bottom: $space-16; // Match top padding for symmetry
+  }
+}
+
+.contact-intro {
+  margin-bottom: $space-10;
+  font-size: $text-lg;
+  line-height: $leading-relaxed;
+  color: var(--color-text-secondary);
+  text-align: center;
+
+  // If content is empty, hide the margin
+  &:empty {
+    display: none;
+  }
+
+  p {
+    margin-bottom: $space-4;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.contact-form-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  padding-bottom: 0;
+}
+
+// Remove extra space at bottom of contact page
+.page-contact {
+  .contact-form-wrapper {
+    margin-bottom: 0;
+  }
+
+  .contact-form {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.form-label {
+  font-size: $text-sm;
+  font-weight: $font-medium;
+  color: var(--color-text);
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: $space-4;
+  font-family: inherit;
+  font-size: $text-base;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: $radius;
+  transition: border-color $transition-fast, box-shadow $transition-fast;
+
+  &::placeholder {
+    color: var(--color-text-secondary);
+    opacity: 0.6;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(255, 3, 165, 0.1);
+  }
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.form-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  padding: $space-4 $space-8;
+  font-family: inherit;
+  font-size: $text-base;
+  font-weight: $font-semibold;
+  color: #2D3561 !important;
+  -webkit-text-fill-color: #2D3561 !important;
+  background: linear-gradient(180deg, $iridescent-cyan 0%, $iridescent-lavender 35%, $iridescent-pearl 100%) !important;
+  background-size: 200% 200%;
+  border: none;
+  border-radius: $radius;
+  cursor: pointer;
+  transition: transform $transition-fast, box-shadow $transition-fast;
+  box-shadow: $iridescent-glow;
+  animation: iridescent-flow 2s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+
+  svg {
+    flex-shrink: 0;
+  }
+
+  // Shimmer overlay effect
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      transparent 100%);
+    transition: left 0.6s ease;
+  }
+
+  &:hover {
+    animation: hue-shift 1.5s ease-in-out infinite;
+    color: #2D3561 !important;
+    -webkit-text-fill-color: #2D3561 !important;
+    transform: translateY(-2px);
+    box-shadow: $iridescent-glow-strong;
+
+    &::before {
+      left: 100%;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus {
+    outline: none;
+    color: #2D3561 !important;
+    -webkit-text-fill-color: #2D3561 !important;
+    box-shadow:
+      0 -2px 8px rgba(15, 224, 236, 0.3),
+      0 2px 8px rgba(255, 3, 165, 0.3),
+      0 0 0 3px rgba(255, 3, 165, 0.3);
+  }
+}
+
+// Success/error states (Formspree redirects, but good to have)
+.form-message {
+  padding: $space-4;
+  border-radius: $radius;
+  font-size: $text-sm;
+  text-align: center;
+
+  &.success {
+    background-color: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+    border: 1px solid rgba(34, 197, 94, 0.2);
+  }
+
+  &.error {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+  }
+}

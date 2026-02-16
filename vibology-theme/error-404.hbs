@@ -1,0 +1,77 @@
+{{!< default}}
+
+{{!-- 404 Error Page --}}
+
+<div class="error-page error-404">
+    <div class="container">
+        <div class="error-content">
+            <h1 class="error-code">404</h1>
+            <p class="error-message">Page Not Found</p>
+            <p class="error-description">
+                The page you're looking for doesn't exist or has been moved.
+            </p>
+
+            {{!-- Search --}}
+            <div class="error-search">
+                <p class="error-search-label">Try searching for it:</p>
+                <button class="button button-outline" data-ghost-search>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    Search
+                </button>
+            </div>
+
+            {{!-- Popular Tags --}}
+            {{#get "tags" limit="10" order="count.posts DESC"}}
+                {{#if tags}}
+                <div class="error-tags">
+                    <h2 class="error-tags-title">Browse by topic:</h2>
+                    <div class="error-tags-list">
+                        {{#foreach tags}}
+                        <a href="{{url}}" class="tag">{{name}}</a>
+                        {{/foreach}}
+                    </div>
+                </div>
+                {{/if}}
+            {{/get}}
+
+            {{!-- Recent Posts --}}
+            {{#get "posts" limit="3"}}
+                {{#if posts}}
+                <div class="error-recent">
+                    <h2 class="error-recent-title">Or check out recent posts:</h2>
+                    <div class="error-recent-posts">
+                        {{#foreach posts}}
+                        <article class="error-post-card">
+                            <a href="{{url}}" class="error-post-link">
+                                {{#if twitter_image}}
+                                <img src="{{img_url twitter_image size="s"}}" alt="{{title}}" class="error-post-image">
+                                {{else}}{{#if og_image}}
+                                <img src="{{img_url og_image size="s"}}" alt="{{title}}" class="error-post-image">
+                                {{else}}{{#if feature_image}}
+                                <img src="{{img_url feature_image size="s"}}" alt="{{title}}" class="error-post-image">
+                                {{/if}}{{/if}}{{/if}}
+                                <div class="error-post-content">
+                                    <h3 class="error-post-title">{{title}}</h3>
+                                    <p class="error-post-excerpt">{{excerpt words="15"}}</p>
+                                </div>
+                            </a>
+                        </article>
+                        {{/foreach}}
+                    </div>
+                </div>
+                {{/if}}
+            {{/get}}
+
+            <a href="{{@site.url}}" class="button button-accent">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Go to Homepage
+            </a>
+        </div>
+    </div>
+</div>

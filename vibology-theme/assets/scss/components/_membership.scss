@@ -1,0 +1,309 @@
+// ============================================
+// Membership & Paywall Components
+// ============================================
+
+@use '../variables' as *;
+
+// --------------------------------------------
+// Paywall CTA
+// --------------------------------------------
+
+.gh-post-upgrade-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $space-12 $space-8;
+  margin: $space-12 0;
+  background: linear-gradient(
+    135deg,
+    var(--color-bg-secondary) 0%,
+    var(--color-bg) 100%
+  );
+  border: 2px solid var(--color-border);
+  border-radius: $radius-lg;
+  text-align: center;
+}
+
+.gh-post-upgrade-cta-content {
+  max-width: 500px;
+
+  h2 {
+    font-size: $text-2xl;
+    font-weight: $font-bold;
+    color: var(--color-text);
+    margin-bottom: $space-4;
+  }
+
+  p {
+    font-size: $text-lg;
+    color: var(--color-text-secondary);
+    line-height: $leading-relaxed;
+    margin-bottom: $space-6;
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
+    padding: $space-3 $space-8;
+    font-size: $text-base;
+    font-weight: $font-semibold;
+    color: #2D3561;
+    background: linear-gradient(180deg, $iridescent-cyan 0%, $iridescent-lavender 35%, $iridescent-pearl 100%);
+    background-size: 200% 200%;
+    border-radius: $radius;
+    text-decoration: none;
+    box-shadow: $iridescent-glow;
+    transition: opacity $transition-fast, transform $transition-fast;
+
+    &:hover {
+      animation: iridescent-shimmer 3s ease-in-out infinite;
+      opacity: 1;
+      transform: translateY(-2px);
+      box-shadow: $iridescent-glow-strong;
+      text-decoration: none;
+    }
+  }
+}
+
+// --------------------------------------------
+// Member Content Badges
+// --------------------------------------------
+
+.post-card {
+  &.post-access-members {
+    position: relative;
+
+    &::before {
+      content: 'Members Only';
+      position: absolute;
+      top: $space-4;
+      right: $space-4;
+      z-index: $z-base;
+      padding: $space-1 $space-3;
+      font-size: $text-xs;
+      font-weight: $font-semibold;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: white;
+      background-color: var(--color-accent);
+      border-radius: $radius-sm;
+    }
+  }
+
+  &.post-access-paid {
+    position: relative;
+
+    &::before {
+      content: 'Paid Members';
+      position: absolute;
+      top: $space-4;
+      right: $space-4;
+      z-index: $z-base;
+      padding: $space-1 $space-3;
+      font-size: $text-xs;
+      font-weight: $font-semibold;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: white;
+      background-color: #10b981;
+      border-radius: $radius-sm;
+    }
+  }
+}
+
+// --------------------------------------------
+// Subscribe Form (enhanced from footer)
+// --------------------------------------------
+
+.subscribe-form-block {
+  max-width: 500px;
+  margin: $space-12 auto;
+  padding: $space-8;
+  background-color: var(--color-bg-secondary);
+  border-radius: $radius-lg;
+  text-align: center;
+
+  h3 {
+    font-size: $text-2xl;
+    font-weight: $font-bold;
+    color: var(--color-text);
+    margin-bottom: $space-4;
+  }
+
+  p {
+    font-size: $text-base;
+    color: var(--color-text-secondary);
+    margin-bottom: $space-6;
+  }
+
+  .subscribe-form {
+    flex-direction: column;
+    gap: $space-3;
+
+    @media (min-width: $breakpoint-sm) {
+      flex-direction: row;
+    }
+  }
+
+  .subscribe-input {
+    flex: 1;
+  }
+
+  .subscribe-button {
+    width: 100%;
+
+    @media (min-width: $breakpoint-sm) {
+      width: auto;
+    }
+  }
+}
+
+// --------------------------------------------
+// Member Portal Links
+// --------------------------------------------
+
+.member-portal {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-2 $space-4;
+  font-size: $text-sm;
+  font-weight: $font-medium;
+  color: var(--color-text);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: $radius;
+  text-decoration: none;
+  transition: all $transition-fast;
+
+  &:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+// --------------------------------------------
+// Membership Tiers Display
+// --------------------------------------------
+
+.membership-tiers {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-6;
+  margin: $space-12 0;
+
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+.membership-tier {
+  padding: $space-8;
+  background-color: var(--color-bg-secondary);
+  border: 2px solid var(--color-border);
+  border-radius: $radius-lg;
+  text-align: center;
+  transition: border-color $transition-base, transform $transition-base;
+
+  &:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-4px);
+  }
+
+  &.tier-featured {
+    border-color: var(--color-accent);
+    position: relative;
+
+    &::before {
+      content: 'Popular';
+      position: absolute;
+      top: -$space-3;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: $space-1 $space-4;
+      font-size: $text-xs;
+      font-weight: $font-bold;
+      text-transform: uppercase;
+      color: white;
+      background-color: var(--color-accent);
+      border-radius: $radius-full;
+    }
+  }
+}
+
+.tier-name {
+  font-size: $text-2xl;
+  font-weight: $font-bold;
+  color: var(--color-text);
+  margin-bottom: $space-3;
+}
+
+.tier-price {
+  font-size: $text-4xl;
+  font-weight: $font-bold;
+  color: var(--color-accent);
+  margin-bottom: $space-2;
+
+  small {
+    font-size: $text-base;
+    font-weight: $font-regular;
+    color: var(--color-text-secondary);
+  }
+}
+
+.tier-description {
+  font-size: $text-base;
+  color: var(--color-text-secondary);
+  margin-bottom: $space-6;
+}
+
+.tier-features {
+  list-style: none;
+  margin: $space-6 0;
+  padding: 0;
+
+  li {
+    padding: $space-2 0;
+    font-size: $text-sm;
+    color: var(--color-text);
+
+    &::before {
+      content: '✓';
+      color: var(--color-accent);
+      font-weight: $font-bold;
+      margin-right: $space-3;
+    }
+  }
+}
+
+.tier-cta {
+  display: block;
+  width: 100%;
+  padding: $space-3 $space-6;
+  font-size: $text-base;
+  font-weight: $font-semibold;
+  color: #2D3561;
+  background: linear-gradient(180deg, $iridescent-cyan 0%, $iridescent-lavender 35%, $iridescent-pearl 100%);
+  background-size: 200% 200%;
+  border: none;
+  border-radius: $radius;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: $iridescent-glow;
+  transition: opacity $transition-fast, transform $transition-fast;
+
+  &:hover {
+    animation: iridescent-shimmer 3s ease-in-out infinite;
+    opacity: 1;
+    transform: translateY(-2px);
+    box-shadow: $iridescent-glow-strong;
+    text-decoration: none;
+  }
+}

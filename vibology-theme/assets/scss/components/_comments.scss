@@ -1,0 +1,14 @@
+// ============================================
+// Comments Section
+// ============================================
+
+@use '../variables' as *;
+
+.post-comments {
+  margin-top: $space-16;
+  padding-top: $space-12;
+  border-top: 1px solid var(--color-border);
+
+  // Ensure comment section doesn't overflow
+  max-width: 100%;
+}

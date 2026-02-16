@@ -1,0 +1,57 @@
+{{!< default}}
+
+{{!-- Tag Archive Template --}}
+
+<div class="post-content-wrapper">
+    <div class="tag-main-content">
+        {{!-- Tag Header Card --}}
+        {{#tag}}
+        <article class="tag-header-card content-card">
+            <div class="post-article-inner">
+                {{#if feature_image}}
+                <div class="tag-hero-image-wrapper">
+                    <img src="{{feature_image}}" alt="{{name}}" class="tag-hero-image">
+                    <div class="tag-hero-overlay"></div>
+                    <div class="tag-hero-badge">{{name}}</div>
+                </div>
+                {{/if}}
+
+                {{#unless feature_image}}
+                <div class="tag-hero-content">
+                    <h1 class="tag-hero-title">{{name}}</h1>
+
+                    {{#if description}}
+                    <p class="tag-hero-description">{{description}}</p>
+                    {{/if}}
+                </div>
+                {{/unless}}
+
+                {{#if feature_image}}
+                    {{#if description}}
+                    <div class="tag-hero-content-below">
+                        <p class="tag-hero-description">{{description}}</p>
+                    </div>
+                    {{/if}}
+                {{/if}}
+            </div>
+        </article>
+        {{/tag}}
+
+        {{!-- Posts with Tag --}}
+        <section class="tag-posts" style="padding: 2rem 1rem;">
+            <h2 class="tag-posts-title">Posts tagged with {{tag.name}}</h2>
+
+            <div class="post-feed post-feed-vertical">
+                {{#foreach posts}}
+                    {{> "post-card"}}
+                {{/foreach}}
+            </div>
+
+            {{!-- Pagination --}}
+            {{> "pagination"}}
+        </section>
+    </div>
+
+    {{!-- Sidebar --}}
+    {{> "sidebar"}}
+</div>

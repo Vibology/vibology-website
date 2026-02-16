@@ -1,0 +1,60 @@
+{{!-- Newsletter Popup Modal --}}
+
+<div class="newsletter-popup" id="newsletterPopup" aria-hidden="true" role="dialog" aria-labelledby="newsletterPopupTitle">
+    <div class="newsletter-popup-overlay"></div>
+    <div class="newsletter-popup-content">
+        <button class="newsletter-popup-close" aria-label="Close newsletter popup">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+
+        <div class="newsletter-popup-inner">
+            <div class="newsletter-popup-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+            </div>
+
+            <h2 id="newsletterPopupTitle" class="newsletter-popup-title">
+                Never miss a post
+            </h2>
+
+            <p class="newsletter-popup-description">
+                Get fresh insights delivered straight to your inbox. Join our community and stay updated with the latest content.
+            </p>
+
+            {{!-- Newsletter Form --}}
+            <form class="newsletter-popup-form" data-members-form="subscribe">
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    class="newsletter-popup-input"
+                    required
+                    aria-label="Email address"
+                >
+                <button type="submit" class="newsletter-popup-button">
+                    <span class="newsletter-popup-button-text">Subscribe</span>
+                    <span class="newsletter-popup-button-loading" style="display: none;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10" opacity="0.25"/>
+                            <path d="M12 2a10 10 0 0 1 10 10" opacity="0.75">
+                                <animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="1s" repeatCount="indefinite"/>
+                            </path>
+                        </svg>
+                    </span>
+                </button>
+
+                <div class="newsletter-popup-message" style="display: none;"></div>
+            </form>
+
+            <label class="newsletter-popup-checkbox">
+                <input type="checkbox" id="dontShowAgain">
+                <span>Don't show this again</span>
+            </label>
+        </div>
+    </div>
+</div>

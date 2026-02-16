@@ -1,0 +1,103 @@
+{
+  "name": "vibology-theme",
+  "description": "A modern, elegant Ghost theme with dark mode, membership features, and flexible layouts",
+  "version": "2.0.1",
+  "engines": {
+    "ghost": ">=5.0.0"
+  },
+  "license": "MIT",
+  "author": {
+    "email": "contact@example.com"
+  },
+  "keywords": [
+    "ghost",
+    "theme",
+    "ghost-theme",
+    "dark-mode",
+    "membership"
+  ],
+  "config": {
+    "posts_per_page": 12,
+    "image_sizes": {
+      "xs": {
+        "width": 150
+      },
+      "s": {
+        "width": 400
+      },
+      "m": {
+        "width": 750
+      },
+      "l": {
+        "width": 1200
+      },
+      "xl": {
+        "width": 2000
+      }
+    },
+    "card_assets": true,
+    "custom": {
+      "navigation_style": {
+        "type": "select",
+        "options": ["Normal", "Sticky", "Sticky Hide"],
+        "default": "Sticky",
+        "group": "homepage"
+      },
+      "show_toc": {
+        "type": "boolean",
+        "default": false,
+        "group": "post"
+      },
+      "dark_mode_logo": {
+        "type": "image",
+        "group": "homepage"
+      },
+      "youtube_url": {
+        "type": "text",
+        "default": "",
+        "group": "homepage"
+      },
+      "bluesky_url": {
+        "type": "text",
+        "default": "",
+        "group": "homepage"
+      },
+      "formspree_id": {
+        "type": "text",
+        "default": "",
+        "description": "Your Formspree form ID (e.g., xpznqwya)",
+        "group": "homepage"
+      },
+      "tinybird_token": {
+        "type": "text",
+        "default": "",
+        "description": "TinyBird analytics token (leave empty to disable)",
+        "group": "homepage"
+      },
+      "tinybird_host": {
+        "type": "text",
+        "default": "https://api.us-east.aws.tinybird.co",
+        "description": "TinyBird API host",
+        "group": "homepage"
+      }
+    }
+  },
+  "scripts": {
+    "dev": "npm run css:watch",
+    "build": "npm run css:build && npm run js:build",
+    "zip": "npm run build && npm run package",
+    "css:build": "sass assets/scss/screen.scss assets/css/screen.css --no-source-map --style compressed && postcss assets/css/screen.css --replace",
+    "css:watch": "sass assets/scss/screen.scss assets/css/screen.css --watch --style expanded --source-map",
+    "js:build": "terser assets/js/main.js -o assets/js/bundle.js --compress --mangle",
+    "js:watch": "cp assets/js/main.js assets/js/bundle.js",
+    "package": "node scripts/package.js"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "cssnano": "^6.0.1",
+    "postcss": "^8.4.31",
+    "postcss-cli": "^11.0.0",
+    "sass": "^1.69.5",
+    "terser": "^5.27.0"
+  }
+}

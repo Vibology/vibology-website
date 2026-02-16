@@ -1,0 +1,138 @@
+{{!-- Sidebar Widgets --}}
+<aside class="sidebar">
+    <div class="sidebar-card">
+        {{!-- Featured Posts Widget --}}
+        <div class="sidebar-widget">
+            <h3 class="sidebar-widget-title">Featured posts</h3>
+        {{#get "posts" limit="3" filter="featured:true" include="tags,authors"}}
+            {{#if posts}}
+            <ul class="sidebar-posts-list">
+                {{#foreach posts}}
+                <li class="sidebar-post-item">
+                    {{#if twitter_image}}
+                    <a href="{{url}}" class="sidebar-post-image">
+                        <img src="{{img_url twitter_image size="s"}}" alt="{{title}}" loading="lazy">
+                    </a>
+                    {{else}}{{#if og_image}}
+                    <a href="{{url}}" class="sidebar-post-image">
+                        <img src="{{img_url og_image size="s"}}" alt="{{title}}" loading="lazy">
+                    </a>
+                    {{else}}{{#if feature_image}}
+                    <a href="{{url}}" class="sidebar-post-image">
+                        <img src="{{img_url feature_image size="s"}}" alt="{{title}}" loading="lazy">
+                    </a>
+                    {{/if}}{{/if}}{{/if}}
+                    <div class="sidebar-post-content">
+                        <h4 class="sidebar-post-title">
+                            <a href="{{url}}">{{title}}</a>
+                        </h4>
+                        <span class="sidebar-post-meta">
+                            <svg class="sidebar-meta-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            {{reading_time}}
+                        </span>
+                    </div>
+                </li>
+                {{/foreach}}
+            </ul>
+            {{/if}}
+        {{/get}}
+        </div>
+
+        {{!-- Tags Cloud Widget --}}
+        <div class="sidebar-widget">
+            <h3 class="sidebar-widget-title">Tags</h3>
+        {{#get "tags" limit="15" order="count DESC"}}
+            {{#if tags}}
+            <div class="sidebar-tags-cloud">
+                {{#foreach tags}}<a href="{{url}}" class="tag">{{name}}</a>{{/foreach}}
+            </div>
+            {{/if}}
+        {{/get}}
+        </div>
+
+        {{!-- Latest Posts Widget --}}
+        <div class="sidebar-widget">
+            <h3 class="sidebar-widget-title">Latest posts</h3>
+        {{#get "posts" limit="5" include="tags,authors"}}
+            {{#if posts}}
+            <ul class="sidebar-posts-list">
+                {{#foreach posts}}
+                <li class="sidebar-post-item">
+                    {{#if twitter_image}}
+                    <a href="{{url}}" class="sidebar-post-image">
+                        <img src="{{img_url twitter_image size="s"}}" alt="{{title}}" loading="lazy">
+                    </a>
+                    {{else}}{{#if og_image}}
+                    <a href="{{url}}" class="sidebar-post-image">
+                        <img src="{{img_url og_image size="s"}}" alt="{{title}}" loading="lazy">
+                    </a>
+                    {{else}}{{#if feature_image}}
+                    <a href="{{url}}" class="sidebar-post-image">
+                        <img src="{{img_url feature_image size="s"}}" alt="{{title}}" loading="lazy">
+                    </a>
+                    {{/if}}{{/if}}{{/if}}
+                    <div class="sidebar-post-content">
+                        <h4 class="sidebar-post-title">
+                            <a href="{{url}}">{{title}}</a>
+                        </h4>
+                        <span class="sidebar-post-meta">
+                            <svg class="sidebar-meta-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            {{reading_time}}
+                        </span>
+                    </div>
+                </li>
+                {{/foreach}}
+            </ul>
+            {{/if}}
+        {{/get}}
+        </div>
+
+        {{!-- Newsletter Widget --}}
+        {{#if @site.members_enabled}}
+        <div class="sidebar-widget sidebar-newsletter">
+            <h3 class="sidebar-widget-title">Newsletter</h3>
+        <p class="sidebar-newsletter-text">Get the latest posts delivered to your inbox.</p>
+        <form class="sidebar-subscribe-form" data-members-form>
+            <input
+                class="sidebar-subscribe-input"
+                type="email"
+                name="email"
+                placeholder="Your email"
+                required
+                aria-label="Email address"
+            >
+            <button class="sidebar-subscribe-button" type="submit">Subscribe</button>
+        </form>
+        </div>
+        {{/if}}
+
+        {{!-- Social Media Links Widget --}}
+        <div class="sidebar-widget sidebar-social">
+            <h3 class="sidebar-widget-title">Follow Vibology</h3>
+        <div class="sidebar-social-links">
+            {{#if @custom.bluesky_url}}
+            <a href="{{@custom.bluesky_url}}" class="sidebar-social-link" target="_blank" rel="noopener noreferrer" aria-label="Bluesky">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.387 2.005-2.83 7.078 5.013 5.19 6.87-1.113 7.823-4.308.953 3.195 2.05 9.271 7.733 4.308 4.267-4.308 1.172-6.498-2.74-7.078a8.741 8.741 0 0 1-.415-.056c.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.79.624-6.478 0-.69-.139-1.861-.902-2.206-.659-.298-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8z"/>
+                </svg>
+                <span>Bluesky</span>
+            </a>
+            {{/if}}
+            {{#if @custom.youtube_url}}
+            <a href="{{@custom.youtube_url}}" class="sidebar-social-link" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M23.498 6.186a3.016 3.016 0.012 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+                <span>YouTube</span>
+            </a>
+            {{/if}}
+        </div>
+        </div>
+    </div>
+</aside>

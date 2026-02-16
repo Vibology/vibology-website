@@ -1,0 +1,162 @@
+{{!-- Site Header --}}
+<header class="site-header {{#match @custom.navigation_style "Sticky"}}sticky{{/match}}{{#match @custom.navigation_style "Sticky Hide"}}sticky-hide{{/match}}">
+    <div class="header-inner">
+            {{!-- Mobile Menu Toggle --}}
+            <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+                <span class="icon-menu">{{> "icons/menu"}}</span>
+                <span class="icon-close hidden">{{> "icons/close"}}</span>
+            </button>
+
+            {{!-- Site Logo/Title --}}
+            <div class="site-brand">
+                <a href="{{@site.url}}" class="site-logo-link">
+                    {{#if @site.logo}}
+                        {{!-- Light mode logo --}}
+                        <img src="{{@site.logo}}" alt="{{@site.title}}" class="site-logo site-logo-light">
+
+                        {{!-- Dark mode logo (if custom setting provided) --}}
+                        {{#if @custom.dark_mode_logo}}
+                            <img src="{{@custom.dark_mode_logo}}" alt="{{@site.title}}" class="site-logo site-logo-dark">
+                        {{else}}
+                            <img src="{{@site.logo}}" alt="{{@site.title}}" class="site-logo site-logo-dark">
+                        {{/if}}
+                    {{else}}
+                        <span class="site-title">{{@site.title}}</span>
+                    {{/if}}
+                </a>
+            </div>
+
+            {{!-- Primary Navigation --}}
+            <nav class="site-nav primary-nav" aria-label="Primary navigation">
+                <ul class="nav-list">
+                    {{!-- Secondary nav items (hidden, processed by JS into dropdowns) --}}
+                    <li class="nav-secondary-container" style="display:none;">
+                        {{navigation type="secondary"}}
+                    </li>
+                    {{!-- Primary nav items --}}
+                    {{navigation}}
+                </ul>
+                <script>
+                (function() {
+                    var container = document.currentScript.parentElement;
+                    var navList = container.querySelector('.nav-list');
+                    var secondaryContainer = container.querySelector('.nav-secondary-container');
+                    var secondaryUl = secondaryContainer ? secondaryContainer.querySelector('ul') : null;
+                    var secondaryItems = secondaryUl ? secondaryUl.querySelectorAll('.nav-secondary-item') : [];
+                    var primaryUl = container.querySelector('.nav-list > ul:last-of-type');
+
+                    // Group secondary items into dropdowns
+                    var dropdowns = {};
+                    secondaryItems.forEach(function(item) {
+                        var label = item.getAttribute('data-label');
+                        var url = item.getAttribute('data-url');
+                        var current = item.getAttribute('data-current') === 'true';
+
+                        if (label && label.indexOf('|') !== -1) {
+                            var parts = label.split('|');
+                            var dropdownName = parts[0].trim();
+                            var itemLabel = parts[1].trim();
+
+                            if (!dropdowns[dropdownName]) {
+                                dropdowns[dropdownName] = [];
+                            }
+                            dropdowns[dropdownName].push({
+                                label: itemLabel,
+                                url: url,
+                                current: current
+                            });
+                        }
+                    });
+
+                    // Build dropdown HTML and insert before primary items
+                    var primaryItems = primaryUl ? primaryUl.querySelectorAll('li') : [];
+                    var insertTarget = primaryItems.length > 0 ? primaryItems[0] : null;
+
+                    for (var name in dropdowns) {
+                        if (dropdowns.hasOwnProperty(name)) {
+                            var items = dropdowns[name];
+                            var li = document.createElement('li');
+                            li.className = 'has-dropdown';
+
+                            var toggle = document.createElement('a');
+                            toggle.href = '#';
+                            toggle.setAttribute('role', 'button');
+                            toggle.setAttribute('aria-expanded', 'false');
+                            toggle.setAttribute('aria-haspopup', 'true');
+                            toggle.textContent = name;
+
+                            var dropdown = document.createElement('ul');
+                            dropdown.className = 'nav-dropdown';
+                            dropdown.setAttribute('role', 'menu');
+
+                            items.forEach(function(item) {
+                                var dropdownLi = document.createElement('li');
+                                dropdownLi.setAttribute('role', 'none');
+
+                                var link = document.createElement('a');
+                                link.href = item.url;
+                                link.setAttribute('role', 'menuitem');
+                                if (item.current) link.className = 'nav-current';
+                                link.textContent = item.label;
+
+                                dropdownLi.appendChild(link);
+                                dropdown.appendChild(dropdownLi);
+                            });
+
+                            li.appendChild(toggle);
+                            li.appendChild(dropdown);
+
+                            if (primaryUl && insertTarget) {
+                                primaryUl.insertBefore(li, insertTarget);
+                            } else if (primaryUl) {
+                                primaryUl.appendChild(li);
+                            }
+                        }
+                    }
+
+                    // Remove the secondary container
+                    if (secondaryContainer) secondaryContainer.remove();
+
+                    // Unwrap the primary ul (move its children to nav-list)
+                    if (primaryUl && navList) {
+                        while (primaryUl.firstChild) {
+                            navList.appendChild(primaryUl.firstChild);
+                        }
+                        primaryUl.remove();
+                    }
+                })();
+                </script>
+            </nav>
+
+            {{!-- Header Actions --}}
+            <div class="header-actions">
+                {{!-- Search Button --}}
+                <button class="header-action search-toggle" data-ghost-search aria-label="Search">
+                    {{> "icons/search"}}
+                </button>
+
+                {{!-- Member Account / Sign In --}}
+                {{#if @member}}
+                    <a href="{{@site.url}}/#/portal/account" class="header-action member-account" data-portal="account" aria-label="Account">
+                        {{> "icons/user"}}
+                    </a>
+                {{else}}
+                    {{#if @site.members_enabled}}
+                    <a href="{{@site.url}}/#/portal/signin" class="header-action member-signin" data-portal="signin" aria-label="Sign in">
+                        {{> "icons/user"}}
+                    </a>
+                    <a href="{{@site.url}}/book-a-reading" class="header-action-link member-signup-btn">
+                        Book a Reading
+                    </a>
+                    {{/if}}
+                {{/if}}
+            </div>
+        </div>
+
+    {{!-- Mobile Menu (slides in from side) --}}
+    <div class="mobile-menu">
+        <nav class="mobile-nav" aria-label="Mobile navigation">
+            {{> "navigation-mobile"}}
+        </nav>
+    </div>
+</header>

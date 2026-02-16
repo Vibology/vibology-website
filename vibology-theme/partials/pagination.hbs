@@ -1,0 +1,10 @@
+{{!-- Pagination - Load More Button --}}
+{{#if pagination}}
+<nav class="pagination" role="navigation" aria-label="Pagination">
+    {{#if pagination.next}}
+    <a class="pagination-load-more" href="{{page_url pagination.next}}" rel="next">
+        Load More
+    </a>
+    {{/if}}
+</nav>
+{{/if}}
