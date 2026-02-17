@@ -44,7 +44,7 @@
         {{!-- Tags Cloud Widget --}}
         <div class="sidebar-widget">
             <h3 class="sidebar-widget-title">Tags</h3>
-        {{#get "tags" limit="15" order="count DESC"}}
+        {{#get "tags" limit="15" order="count.posts DESC" include="count.posts"}}
             {{#if tags}}
             <div class="sidebar-tags-cloud">
                 {{#foreach tags}}<a href="{{url}}" class="tag">{{name}}</a>{{/foreach}}

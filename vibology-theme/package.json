@@ -1,9 +1,9 @@
 {
   "name": "vibology-theme",
   "description": "A modern, elegant Ghost theme with dark mode, membership features, and flexible layouts",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "engines": {
-    "ghost": ">=5.0.0"
+    "ghost": ">=6.0.0"
   },
   "license": "MIT",
   "author": {

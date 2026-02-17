@@ -3,11 +3,6 @@
 {{!-- Single Post Template --}}
 
 {{#post}}
-{{!-- Reading Progress Bar --}}
-<div class="scroll-progress">
-    <div class="scroll-progress-bar"></div>
-</div>
-
 <div class="post-content-wrapper">
     {{!-- Main Post Content --}}
     <article class="post-full {{post_class}} content-card">
@@ -74,7 +69,7 @@
 
             {{!-- Post content --}}
             <div class="post-content my-12">
-                {{content}}
+                {{{content}}}
             </div>
 
             {{!-- Series Navigation --}}

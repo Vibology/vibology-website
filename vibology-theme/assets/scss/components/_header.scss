@@ -435,35 +435,6 @@
 }
 
 // --------------------------------------------
-// Theme Toggle
-// --------------------------------------------
-
-.theme-toggle {
-  position: relative;
-
-  .icon-light,
-  .icon-dark {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .icon-dark {
-    display: none;
-  }
-}
-
-[data-theme="dark"] .theme-toggle {
-  .icon-light {
-    display: none;
-  }
-
-  .icon-dark {
-    display: flex;
-  }
-}
-
-// --------------------------------------------
 // Mobile Menu Toggle
 // --------------------------------------------
 

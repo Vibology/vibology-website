@@ -92,7 +92,7 @@
   &:focus {
     outline: none;
     border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px rgba(255, 3, 165, 0.1);
+    box-shadow: 0 0 0 3px rgba(184, 165, 229, 0.15);
   }
 }
 
@@ -163,9 +163,9 @@
     color: #2D3561 !important;
     -webkit-text-fill-color: #2D3561 !important;
     box-shadow:
-      0 -2px 8px rgba(15, 224, 236, 0.3),
-      0 2px 8px rgba(255, 3, 165, 0.3),
-      0 0 0 3px rgba(255, 3, 165, 0.3);
+      0 -2px 8px rgba(157, 216, 247, 0.3),
+      0 2px 8px rgba(184, 165, 229, 0.3),
+      0 0 0 3px rgba(184, 165, 229, 0.3);
   }
 }
 

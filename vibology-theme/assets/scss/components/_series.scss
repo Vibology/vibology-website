@@ -52,7 +52,7 @@
 
 .series-progress {
   height: 4px;
-  background-color: rgba(255, 3, 165, 0.2);
+  background-color: rgba(184, 165, 229, 0.15);
   border-radius: $radius-full;
   margin-bottom: $space-8;
   overflow: hidden;
@@ -60,7 +60,7 @@
 
 .series-progress-bar {
   height: 100%;
-  background: linear-gradient(90deg, rgba(138, 0, 138, 1) 0%, rgba(255, 3, 165, 1) 100%);
+  background: linear-gradient(90deg, #9DD8F7 0%, #B8A5E5 50%, #E8F5FF 100%);
   border-radius: $radius-full;
   transition: width 0.3s ease;
 }
@@ -105,7 +105,7 @@
   font-size: $text-sm;
   font-weight: $font-bold;
   color: var(--color-accent);
-  background-color: rgba(255, 3, 165, 0.1);
+  background-color: rgba(184, 165, 229, 0.1);
   border-radius: $radius-full;
 
   .series-item-current & {
