@@ -354,7 +354,7 @@ a[class="tag"],
   transform-origin: center center !important;
 
   // Transitions
-  transition: border-color 150ms ease-in-out, box-shadow 150ms ease-in-out !important;
+  transition: border-color 150ms ease-in-out, box-shadow 150ms ease-in-out, color 150ms ease-in-out !important;
 
   // Interaction
   cursor: pointer !important;
@@ -380,33 +380,17 @@ a[class="tag"],
     display: none !important;
   }
 
-  // Hover state - iridescent effect
+  // Hover state - iridescent gradient fill (matches "Book a Reading" button)
   &:hover {
     border-color: transparent !important;
-    background-color: #1A1A1A !important;
-    background-clip: padding-box !important;
+    background: linear-gradient(180deg, #9DD8F7 0%, #B8A5E5 35%, #E8F5FF 100%) !important;
+    background-clip: border-box !important;
+    color: #2D3561 !important;
+    -webkit-text-fill-color: #2D3561 !important;
     box-shadow:
       0 0 12px rgba(157, 216, 247, 0.3),
       0 0 18px rgba(184, 165, 229, 0.25),
       0 0 24px rgba(232, 245, 255, 0.2) !important;
-
-    &::after {
-      content: '' !important;
-      display: block !important;
-      position: absolute !important;
-      top: -2px !important;
-      left: -2px !important;
-      right: -2px !important;
-      bottom: -2px !important;
-      width: auto !important;
-      height: auto !important;
-      background: linear-gradient(180deg, #9DD8F7 0%, #B8A5E5 35%, #E8F5FF 100%) !important;
-      background-size: 200% 200%;
-      border-radius: inherit !important;
-      z-index: -1 !important;
-      opacity: 1 !important;
-      animation: iridescent-shimmer 3s ease-in-out infinite;
-    }
   }
 
   // Focus state
@@ -431,7 +415,9 @@ a[class="tag"],
   -webkit-text-fill-color: #2D3350 !important;
 
   &:hover {
-    background-color: #F9F9FF !important;
+    background: linear-gradient(180deg, #9DD8F7 0%, #B8A5E5 35%, #E8F5FF 100%) !important;
+    color: #2D3561 !important;
+    -webkit-text-fill-color: #2D3561 !important;
   }
 }
 

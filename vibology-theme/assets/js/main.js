@@ -11,8 +11,6 @@
   // --------------------------------------------
 
   function initDarkMode() {
-    const theme = localStorage.getItem('theme') || 'auto';
-
     function applyTheme(themeValue) {
       if (themeValue === 'auto') {
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -99,14 +97,6 @@
         }
       });
 
-      // Mobile dropdown toggles
-      const dropdownToggles = mobileMenu.querySelectorAll('.has-dropdown > a');
-      dropdownToggles.forEach(toggle => {
-        toggle.addEventListener('click', function(e) {
-          e.preventDefault();
-          toggleDropdown(this.parentElement, mobileMenu);
-        });
-      });
     }
   }
 
@@ -115,28 +105,14 @@
   // --------------------------------------------
 
   function initDropdowns() {
-    // Navigation HTML is already built by nav-init.hbs
-    // Just attach event listeners to make dropdowns interactive
-
+    // Desktop dropdowns — prevent navigation on click (CSS :hover handles display)
+    // Mobile dropdown click handlers are attached inline in navigation-mobile.hbs
     const desktopNav = document.querySelector('.primary-nav > ul');
-    const mobileNav = document.querySelector('.mobile-nav > ul');
-
     if (!desktopNav) return;
 
-    // Desktop dropdowns - prevent navigation on toggle click
     desktopNav.querySelectorAll('.has-dropdown > a').forEach(toggle => {
       toggle.addEventListener('click', e => e.preventDefault());
     });
-
-    // Mobile dropdowns - toggle visibility
-    if (mobileNav) {
-      mobileNav.querySelectorAll('.has-dropdown > a').forEach(toggle => {
-        toggle.addEventListener('click', function(e) {
-          e.preventDefault();
-          toggleDropdown(this.parentElement, mobileNav);
-        });
-      });
-    }
   }
 
   // --------------------------------------------
@@ -151,7 +127,7 @@
     const scrollThreshold = 100;
 
     window.addEventListener('scroll', function() {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
 
       // Add/remove scrolled class
       if (scrollTop > 50) {
@@ -211,11 +187,12 @@
     if (!progressBar) return;
 
     const progressContainer = document.querySelector('.scroll-progress');
+    if (!progressContainer) return;
 
     window.addEventListener('scroll', function() {
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
       const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
 
       progressBar.style.width = scrollPercent + '%';
@@ -237,7 +214,7 @@
     if (!backToTop) return;
 
     window.addEventListener('scroll', function() {
-      if (window.pageYOffset > 300) {
+      if (window.scrollY > 300) {
         backToTop.classList.add('visible');
       } else {
         backToTop.classList.remove('visible');
@@ -283,7 +260,10 @@
       link.textContent = heading.textContent;
       link.addEventListener('click', function(e) {
         e.preventDefault();
-        heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const header = document.querySelector('.site-header');
+        const headerHeight = header ? header.getBoundingClientRect().height : 0;
+        const top = heading.getBoundingClientRect().top + window.scrollY - headerHeight;
+        window.scrollTo({ top, behavior: 'smooth' });
         history.pushState(null, null, `#${id}`);
       });
 
@@ -320,7 +300,7 @@
 
   function initLightbox() {
     if (typeof GLightbox !== 'undefined') {
-      const lightbox = GLightbox({
+      GLightbox({
         selector: '.post-content img',
         touchNavigation: true,
         loop: true,
@@ -337,7 +317,6 @@
     const slider = document.querySelector('.featured-slider');
     if (!slider) return;
 
-    const track = slider.querySelector('.slider-track');
     const slides = slider.querySelectorAll('.slider-slide');
     const dots = slider.querySelectorAll('.slider-dot');
     const prevBtn = slider.querySelector('.slider-prev');
@@ -351,7 +330,6 @@
 
     // Initialize
     function init() {
-      applyTagColors();
       applyDotGradient();
       startAutoplay();
 
@@ -375,6 +353,20 @@
         if (e.key === 'ArrowLeft') prev();
         if (e.key === 'ArrowRight') next();
       });
+
+      // Touch/swipe navigation
+      let touchStartX = 0;
+      slider.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        stopAutoplay();
+      }, { passive: true });
+      slider.addEventListener('touchend', (e) => {
+        const delta = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(delta) > 50) {
+          if (delta > 0) next(); else prev();
+        }
+        startAutoplay();
+      }, { passive: true });
     }
 
     // Go to specific slide
@@ -449,52 +441,7 @@
       });
     }
 
-    // Apply colors to tags in slider
-    function applyTagColors() {
-      const tags = slider.querySelectorAll('.tag');
-      tags.forEach(tag => {
-        const tagName = tag.textContent.trim();
-        let hash = 0;
-        for (let i = 0; i < tagName.length; i++) {
-          hash = tagName.charCodeAt(i) + ((hash << 5) - hash);
-        }
-        const hue = Math.abs(hash % 360);
-        const saturation = 70 + (Math.abs(hash) % 25);
-        const lightness = 60 + (Math.abs(hash >> 8) % 20);
-        tag.style.setProperty('--tag-dot-color', `hsl(${hue}, ${saturation}%, ${lightness}%)`);
-      });
-    }
-
     init();
-  }
-
-  // --------------------------------------------
-  // Tag Color Generator
-  // --------------------------------------------
-
-  function initTagColors() {
-    // Generate a consistent color from a string
-    function stringToColor(str) {
-      let hash = 0;
-      for (let i = 0; i < str.length; i++) {
-        hash = str.charCodeAt(i) + ((hash << 5) - hash);
-      }
-
-      // Convert to HSL with good saturation and lightness for dark theme
-      const hue = Math.abs(hash % 360);
-      const saturation = 70 + (Math.abs(hash) % 25); // 70-95% (brighter, more saturated)
-      const lightness = 60 + (Math.abs(hash >> 8) % 20); // 60-80% (brighter)
-
-      return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
-    }
-
-    // Apply colors to the ::before pseudo-element (dot) of all tags across the site
-    const tags = document.querySelectorAll('.tag');
-    tags.forEach(tag => {
-      const tagName = tag.textContent.trim();
-      const color = stringToColor(tagName);
-      tag.style.setProperty('--tag-dot-color', color);
-    });
   }
 
   // --------------------------------------------
@@ -632,7 +579,6 @@
     initTableOfContents();
     initLightbox();
     initFeaturedSlider();
-    initTagColors();
     initNewsletterPopup();
   }
 
