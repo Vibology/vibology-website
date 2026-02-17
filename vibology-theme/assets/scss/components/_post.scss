@@ -232,10 +232,6 @@
     margin-right: -50vw;
   }
 
-  // Improved readability for long-form content
-  @media (min-width: $breakpoint-lg) {
-    font-size: $text-xl;
-  }
 }
 
 // Post Header (below feature image)
@@ -248,13 +244,13 @@
   // Tag margin now in _utilities.scss
 
   .post-title {
-    font-size: $text-3xl;
+    font-size: 2rem; // 32px
     font-weight: $font-bold;
     line-height: $leading-tight;
     margin-bottom: $space-6;
 
     @media (min-width: $breakpoint-md) {
-      font-size: $text-4xl;
+      font-size: 2.5rem; // 40px
     }
   }
 }
@@ -266,13 +262,13 @@
   margin-bottom: $space-4;
 
   .page-title {
-    font-size: $text-3xl;
+    font-size: 2rem; // 32px
     font-weight: $font-bold;
     line-height: $leading-tight;
     margin-bottom: $space-6;
 
     @media (min-width: $breakpoint-md) {
-      font-size: $text-4xl;
+      font-size: 2.5rem; // 40px
     }
   }
 
@@ -338,10 +334,6 @@
     }
   }
 
-  // Improved readability for long-form content
-  @media (min-width: $breakpoint-lg) {
-    font-size: $text-xl;
-  }
 }
 
 // Post Meta Header (author and date/time info)
@@ -462,7 +454,7 @@
 }
 
 .related-posts-title {
-  font-size: $text-2xl;
+  font-size: 1.375rem; // 22px
   font-weight: $font-bold;
   color: var(--color-text);
 }
@@ -665,7 +657,7 @@
   }
 
   .author-name {
-    font-size: $text-xl;
+    font-size: $text-lg; // 18px
     font-weight: $font-bold;
     margin-bottom: $space-3;
     line-height: $leading-tight;

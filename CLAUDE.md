@@ -13,7 +13,7 @@ The Vibology website is the public-facing digital presence for Vibology — a co
 | **Styling** | SCSS with PostCSS pipeline |
 | **Typography** | Cabin font (primary) |
 | **JavaScript** | Minimal vanilla JS (~7KB minified) |
-| **External Libraries** | GLightbox, Swiper, Prism.js (CDN-loaded) |
+| **External Libraries** | GLightbox, Prism.js (CDN-loaded) |
 | **Build System** | npm scripts (simple, no complex tooling) |
 | **Analytics** | TinyBird integration |
 
@@ -52,7 +52,7 @@ See `STYLE-GUIDE.md` for complete visual specifications.
 
 ## Theme Structure
 
-### Vibology Theme v1.1.0
+### Vibology Theme v2.0.1
 
 **Key Features:**
 - Clean, minimal codebase (~77KB CSS, ~7KB JS)
@@ -122,7 +122,7 @@ npm run js:build   # Minify JavaScript only
 ### Theme Deployment
 
 1. Build and zip the theme: `npm run build && npm run zip`
-2. Upload `vibology-theme.zip` to Ghost admin
+2. Upload `vibology-theme-2.0.1.zip` to Ghost admin
 3. Activate the theme in Settings → Design
 4. Configure theme settings (logo, dark mode logo, analytics, etc.)
 
@@ -193,8 +193,8 @@ shallow depth of field. Modern, clean aesthetic. No text, no people, no photorea
 ### Announcement Bar
 
 Custom gradient styling automatically applied:
-- Background: Cyan (`#0ce4ef`) to Magenta (`#ff03a5`) vertical gradient
-- Typography: 30px bold Cabin (24px mobile)
+- Background: Iridescent vertical gradient — Cyan (`#9DD8F7`) → Lavender (`#B8A5E5`) → Pearl (`#E8F5FF`)
+- Typography: 16px bold Cabin (14px mobile), Deep Indigo (#2D3561) text
 - Compact design with 8px vertical padding
 - Configure in Ghost Admin → Settings → Announcement bar
 

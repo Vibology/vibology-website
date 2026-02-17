@@ -13,9 +13,9 @@
 - **Gradient:** Vertical linear gradient - `#9DD8F7` (cyan) 0% → `#B8A5E5` (lavender) 35% → `#E8F5FF` (pearl) 100%
 
 **Files:**
-- `/Users/joe/Business/Branding/Logo/logo-iridescent.svg` - Wordmark only
-- `/Users/joe/Business/Branding/Logo/icon-iridescent.svg` - Dodecahedron icon (1600×1600)
-- `/Users/joe/Business/Branding/Logo/logo-combined.svg` - Combined logo
+- `/Users/joe/Vibology/Branding/Logo/logo-iridescent.svg` - Wordmark only
+- `/Users/joe/Vibology/Branding/Logo/icon-iridescent.svg` - Dodecahedron icon (1600×1600)
+- `/Users/joe/Vibology/Branding/Logo/logo-combined.svg` - Combined logo
 
 ### UI Color Palette
 

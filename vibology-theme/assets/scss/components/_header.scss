@@ -112,9 +112,9 @@
 }
 
 .site-logo {
-  height: 40px;
+  height: 32px;
   width: auto;
-  max-width: 175px;
+  max-width: 140px;
   object-fit: contain;
   transition: filter $transition-slow;
   display: block; // Ensure proper rendering
@@ -131,17 +131,17 @@
           drop-shadow(0 0 12px rgba(184, 165, 229, 0.15));
 
   @media (min-width: $breakpoint-sm) {
-    height: 50px;
-    max-width: 200px;
+    height: 40px;
+    max-width: 175px;
   }
 
   @media (min-width: $breakpoint-md) {
-    height: 65px;
-    max-width: 300px;
+    height: 52px;
+    max-width: 250px;
   }
 
   @media (min-width: $breakpoint-lg) {
-    height: 75px;
+    height: 60px;
   }
 
   // Animated glow on hover
@@ -202,18 +202,14 @@
   }
 
   a {
-    font-size: $text-xl;
+    font-size: $text-base;
     font-weight: $font-medium;
-    color: var(--color-text-secondary);
+    color: var(--color-text);
     text-decoration: none;
     transition: color $transition-fast;
     padding: $space-2 0;
     display: block;
     letter-spacing: 0.01em;
-
-    @media (min-width: $breakpoint-lg) {
-      font-size: $text-2xl;
-    }
 
     &:hover {
       color: var(--color-text);
@@ -238,18 +234,18 @@
 
         &::after {
           content: '';
-          width: 0;
-          height: 0;
-          border-top: 5px solid transparent;
-          border-bottom: 5px solid transparent;
-          border-left: 5px solid currentColor;
+          width: 7px;
+          height: 7px;
+          border-right: 2px solid currentColor;
+          border-bottom: 2px solid currentColor;
+          transform: rotate(45deg);
           transition: transform $transition-fast;
         }
       }
 
       &:hover > a::after,
       &:focus-within > a::after {
-        transform: rotate(90deg);
+        transform: rotate(225deg);
       }
     }
   }
@@ -325,7 +321,7 @@
   flex-shrink: 0;
 
   @media (min-width: $breakpoint-md) {
-    gap: $space-8;
+    gap: $space-4;
   }
 }
 
@@ -638,18 +634,18 @@
 
         &::after {
           content: '';
-          width: 0;
-          height: 0;
-          border-top: 5px solid transparent;
-          border-bottom: 5px solid transparent;
-          border-left: 5px solid currentColor;
+          width: 7px;
+          height: 7px;
+          border-right: 2px solid currentColor;
+          border-bottom: 2px solid currentColor;
+          transform: rotate(45deg);
           transition: transform $transition-fast;
           flex-shrink: 0;
         }
       }
 
       &.dropdown-open > a::after {
-        transform: rotate(90deg);
+        transform: rotate(225deg);
       }
     }
   }

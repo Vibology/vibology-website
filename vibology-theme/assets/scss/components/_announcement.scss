@@ -20,14 +20,14 @@
 .gh-announcement-bar-content,
 .gh-announcement-bar-content * {
   background: transparent !important;
-  color: #FFFFFF !important;
+  color: #2D3561 !important;
 }
 
 .gh-announcement-bar-content {
   padding: $space-2 $space-4 !important; // Reduced by ~20% (from 12px to 8px vertical)
   min-height: auto !important;
   font-family: $font-sans !important; // Cabin font
-  font-size: $text-3xl !important; // 30px (50% larger than 20px)
+  font-size: $text-base !important; // 16px
   font-weight: $font-bold !important; // Bold
   line-height: $leading-normal;
   text-align: center;
@@ -55,7 +55,7 @@
 
   // Mobile: slightly smaller but still prominent
   @media (max-width: $breakpoint-sm) {
-    font-size: $text-2xl !important; // 24px on mobile (50% larger than 18px would be 27px, using 24px)
+    font-size: $text-sm !important; // 14px on mobile
     padding: $space-1 $space-3 !important; // Reduced vertical padding
   }
 }

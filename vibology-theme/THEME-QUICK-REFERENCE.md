@@ -2,8 +2,8 @@
 
 **For Content Creation & Design**
 
-Version: 1.7.0
-Last Updated: 2026-01-26
+Version: 2.0.1
+Last Updated: 2026-02-16
 
 ---
 
@@ -65,7 +65,7 @@ Last Updated: 2026-01-26
 - **Primary Text:** #2D3350 (dark blue-gray)
 - **Secondary Text:** #6B7280 (medium gray)
 - **Borders:** #DADCE5 (light gray)
-- **Accent:** #FF03A5 (vibrant magenta)
+- **Accent:** #B8A5E5 (lavender)
 
 #### Dark Mode
 - **Background:** #1A1A1A (dark gray)
@@ -73,7 +73,13 @@ Last Updated: 2026-01-26
 - **Primary Text:** #EAEAEA (off-white)
 - **Secondary Text:** #B5B5B5 (medium gray)
 - **Borders:** #2A2A2A (subtle gray)
-- **Accent:** #FF03A5 (vibrant magenta)
+- **Accent:** #B8A5E5 (lavender)
+
+#### Iridescent Gradient (Primary Brand)
+- **Cyan:** #9DD8F7 → **Lavender:** #B8A5E5 → **Pearl:** #E8F5FF
+- Vertical (180°), stops at 0% / 35% / 100%
+- Used for: logo, buttons, reading progress bar, slider dots, hover effects
+- **Text on gradient:** Deep Indigo #2D3561
 
 **Using colors in content:**
 When creating HTML content blocks in Ghost, use these CSS variables:
@@ -95,12 +101,11 @@ When creating HTML content blocks in Ghost, use these CSS variables:
 - Code: SF Mono (monospace)
 
 **Font Sizes (use in Ghost editor):**
-- **Heading 1:** 48px (3rem) - Page titles
-- **Heading 2:** 36px (2.25rem) - Section headings
-- **Heading 3:** 30px (1.875rem) - Subsections
-- **Heading 4:** 24px (1.5rem) - Minor headings
+- **Heading 1:** 32px mobile / 40px desktop - Page titles
+- **Heading 2:** 26px mobile / 32px desktop - Section headings
+- **Heading 3:** 22px mobile / 26px desktop - Subsections
+- **Heading 4:** 18px mobile / 22px desktop - Minor headings
 - **Body Text:** 16px (1rem) - Default
-- **Large Text:** 20px (1.25rem) - Intro paragraphs
 - **Small Text:** 14px (0.875rem) - Captions, meta
 
 **Line Height:**
@@ -140,8 +145,8 @@ Use these values when adding custom spacing in HTML blocks:
 ### Buttons & Links
 
 **Link Style:**
-- Default: Accent color (#FF03A5)
-- Hover: Slightly brighter
+- Default: Accent color (#B8A5E5 lavender)
+- Hover: Slightly brighter, animated underline
 - Underline on hover
 
 **Button Styles:**
@@ -351,10 +356,10 @@ TOC appears below post header, lists H2/H3/H4 headings with anchor links.
 The theme provides custom styling for Ghost's native announcement bar:
 
 **Styling:**
-- Vertical gradient background (cyan to magenta)
-- Large, bold 30px Cabin font (24px on mobile)
+- Iridescent vertical gradient (cyan #9DD8F7 → lavender #B8A5E5 → pearl #E8F5FF)
+- 16px bold Cabin font (14px on mobile)
 - Compact 8px vertical padding
-- White text
+- Deep Indigo (#2D3561) text
 
 **To Use:**
 1. Go to Settings → Announcement bar
@@ -446,7 +451,7 @@ Creates two dropdowns: "About" (3 items) and "Services" (2 items).
 **Important:**
 - All items MUST have URLs set (if empty, defaults to `/` which breaks navigation)
 - Items without `|` in secondary nav are ignored
-- Arrow indicators: Point RIGHT by default, rotate DOWN on hover
+- Arrow indicators: Point DOWN by default, rotate UP on hover
 
 ### Featuring a Post
 
@@ -689,5 +694,5 @@ Settings → Labs → Export your content
 
 ---
 
-**Quick Reference Version: 1.0.2**
-**Last Updated: 2026-01-25**
+**Quick Reference Version: 2.0.1**
+**Last Updated: 2026-02-16**

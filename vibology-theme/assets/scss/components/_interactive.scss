@@ -54,8 +54,8 @@
     background: linear-gradient(180deg, $iridescent-cyan 0%, $iridescent-lavender 35%, $iridescent-pearl 100%);
     background-size: 200% 200%;
     animation: iridescent-shimmer 3s ease-in-out infinite;
-    color: white !important;
-    -webkit-text-fill-color: white !important;
+    color: #2D3561 !important;
+    -webkit-text-fill-color: #2D3561 !important;
     text-decoration: none;
     box-shadow: $iridescent-glow;
   }

@@ -2,8 +2,8 @@
 
 **For Claude Code - Comprehensive Development Reference**
 
-Version: 1.6.4
-Last Updated: 2026-01-26
+Version: 2.0.1
+Last Updated: 2026-02-16
 Ghost Compatibility: 6.0+
 
 ---
@@ -63,7 +63,6 @@ Ghost Compatibility: 6.0+
   - Terser for JS minification
 - **External Libraries** (CDN):
   - GLightbox (~20KB) - image lightbox
-  - Swiper (~25KB) - featured slider
   - Prism.js - syntax highlighting
 
 ### Design Philosophy
@@ -77,7 +76,7 @@ Ghost Compatibility: 6.0+
 ### Key Features
 
 - Comprehensive dark mode with system preference detection
-- Custom announcement bar styling (cyan-to-magenta gradient)
+- Custom announcement bar styling (iridescent gradient)
 - TinyBird analytics integration
 - Ghost native membership support
 - Newsletter popup with scroll trigger
@@ -514,7 +513,7 @@ terser assets/js/main.js -o assets/js/bundle.js --compress --mangle
 `scripts/package.js` creates a zip file for Ghost upload:
 - Excludes: node_modules, .git, source files, dev configs
 - Includes: templates, compiled assets, package.json
-- Output: `vibology-theme.zip`
+- Output: `vibology-theme-{version}.zip` (e.g., `vibology-theme-2.0.1.zip`)
 
 ---
 
@@ -610,10 +609,18 @@ $dark-border: #2A2A2A;           // Subtle borders
 $dark-shadow: rgba(0, 0, 0, 0.8);
 ```
 
+**Iridescent Gradient (Primary):**
+```scss
+$iridescent-cyan: #9DD8F7;       // Gradient start (0%)
+$iridescent-lavender: #B8A5E5;   // Gradient middle (35%)
+$iridescent-pearl: #E8F5FF;      // Gradient end (100%)
+// Canonical gradient: linear-gradient(180deg, $iridescent-cyan 0%, $iridescent-lavender 35%, $iridescent-pearl 100%)
+// Text on gradient: Deep Indigo #2D3561
+```
+
 **Accent:**
 ```scss
-$accent-default: #FF03A5;        // Vibrant magenta
-$accent-glow: 0 0 20px rgba(255, 3, 165, 0.5);
+$accent-default: #B8A5E5;        // Lavender (used for links, borders, active states)
 ```
 
 #### CSS Custom Properties
@@ -627,7 +634,7 @@ Used for runtime theming:
   --color-text: #{$light-text};
   --color-text-secondary: #{$light-text-secondary};
   --color-border: #{$light-border};
-  --color-accent: #{$accent-default};
+  --color-accent: #{$iridescent-lavender};  // #B8A5E5
 
   --font-sans: #{$font-sans};
   --header-height: 80px;
@@ -773,8 +780,8 @@ Secondary navigation items with `|` delimiter are grouped into dropdowns:
 4. `{{navigation}}` renders primary navigation items after dropdowns
 
 **Arrow Indicators:**
-- Default state: Arrow points RIGHT (→)
-- Hover/open state: Arrow rotates 90° clockwise to point DOWN (↓)
+- Default state: Chevron points DOWN (↓) — thin 7px×7px chevron with 2px stroke
+- Hover/open state: Chevron rotates to point UP (↑)
 
 **Required Setup in Ghost Admin:**
 1. Go to Settings → Navigation
@@ -852,7 +859,7 @@ Custom slider implementation (no Swiper dependency):
 - Smooth transitions
 
 **Colors:**
-- Dots interpolate between cyan (#0fe0ec) and magenta (#FF03A5)
+- Dots interpolate across the iridescent gradient (cyan #9DD8F7 → lavender #B8A5E5 → pearl #E8F5FF)
 - Tags get consistent color from string hash
 
 ### Tag Colors (`initTagColors`)
@@ -1015,10 +1022,10 @@ The theme provides custom styling for Ghost's built-in announcement bar feature.
 4. Save changes
 
 **Theme Styling:**
-- **Background**: Vertical gradient from cyan (#0ce4ef) to magenta (#ff03a5)
-- **Typography**: 30px bold Cabin font (24px on mobile)
+- **Background**: Iridescent vertical gradient (cyan #9DD8F7 → lavender #B8A5E5 → pearl #E8F5FF)
+- **Typography**: 16px bold Cabin font (14px on mobile)
 - **Padding**: 8px vertical for compact appearance
-- **Colors**: White text on gradient background
+- **Colors**: Deep Indigo (#2D3561) text on gradient background
 
 **CSS Classes Used:**
 ```scss
@@ -1031,7 +1038,7 @@ The theme provides custom styling for Ghost's built-in announcement bar feature.
 To modify the gradient or styling, edit `assets/scss/components/_announcement.scss`:
 ```scss
 #announcement-bar-root {
-  background: linear-gradient(180deg, #0ce4ef 0%, #ff03a5 100%) !important;
+  background: linear-gradient(180deg, $iridescent-cyan 0%, $iridescent-lavender 35%, $iridescent-pearl 100%) !important;
 }
 ```
 
@@ -1236,7 +1243,7 @@ Browsers natively lazy-load images below the fold.
 ### Initial Setup
 
 ```bash
-cd ~/Business/Website/vibology-theme
+cd ~/Vibology/Website/vibology-theme
 npm install
 ```
 
@@ -1275,7 +1282,7 @@ This:
 npm run zip
 ```
 
-Creates `vibology-theme.zip` ready for Ghost upload.
+Creates `vibology-theme-2.0.1.zip` (versioned) ready for Ghost upload.
 
 ### Common Tasks
 
@@ -1326,7 +1333,7 @@ Creates `vibology-theme.zip` ready for Ghost upload.
 2. **Upload to Ghost:**
    - Go to Ghost Admin → Settings → Design
    - Click "Change theme"
-   - Upload `vibology-theme.zip`
+   - Upload `vibology-theme-2.0.1.zip`
    - Activate theme
 
 3. **Configure custom settings:**
@@ -1464,7 +1471,7 @@ fetch('/members/api/send-magic-link/', {
 ## Theme Metadata
 
 **Name:** Vibology Theme
-**Version:** 1.1.0
+**Version:** 2.0.1
 **Author:** Joe Lencioni
 **License:** MIT
 **Ghost Version:** 6.0+

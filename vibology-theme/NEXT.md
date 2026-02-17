@@ -1,9 +1,25 @@
 # Vibology Theme - Next Steps & Improvements
 
-**Last Updated:** 2026-01-26
-**Current Version:** 1.6.4
+**Last Updated:** 2026-02-16
+**Current Version:** 2.0.1
 
 ---
+
+## Recently Completed (v2.0.x)
+
+### Visual Refresh & Design System
+- [x] Iridescent gradient updated: removed pink, canonical is cyan → lavender → pearl (3-stop)
+- [x] Announcement bar: iridescent gradient, 16px/14px font, Deep Indigo text
+- [x] Font sizes reduced across all headings (h1–h4), post/page titles, related posts, author name
+- [x] Featured slider: image moved to left, content to right (reversed layout)
+- [x] Slider pagination dots: gold/amber → iridescent gradient interpolation
+- [x] Share button hover text: white → Deep Indigo #2D3561
+- [x] Header logo sizes reduced (32/40/52/60px)
+- [x] Nav links: secondary color → primary text color
+- [x] Dropdown arrows: filled triangles → thin chevrons (down default, up on hover)
+- [x] Header actions gap tightened
+- [x] Book a Reading button: restored 3-stop iridescent gradient (180deg)
+- [x] Replaced Swiper with custom lightweight slider implementation
 
 ## Recently Completed (v1.6.x)
 
@@ -11,7 +27,7 @@
 - [x] Fixed navigation URLs (was outputting `/` for all links)
 - [x] Implemented proper Ghost `{{navigation}}` helper usage
 - [x] Dropdown menus from secondary navigation with `|` delimiter
-- [x] Arrow indicators: RIGHT default → DOWN on hover (90° rotation)
+- [x] Arrow indicators: DOWN default → UP on hover
 - [x] Both desktop and mobile navigation working
 - [x] Created `GHOST-V6-REFERENCE.md` comprehensive documentation
 
@@ -88,9 +104,10 @@ Review and potentially remove:
 
 ## Documentation Updates Needed
 
-- [ ] Update README.md with navigation setup instructions
-- [ ] Add troubleshooting section for common navigation issues
-- [ ] Document the `{{navigation}}` vs `{{#foreach @site.navigation}}` distinction
+- [x] Update README.md with navigation setup instructions
+- [x] Add troubleshooting section for common navigation issues
+- [x] Document the `{{navigation}}` vs `{{#foreach @site.navigation}}` distinction
+- [x] Update all documentation to reflect v2.0.x visual refresh
 
 ---
 
@@ -111,7 +128,16 @@ The navigation system uses a hybrid approach:
 
 - `partials/header.hbs` - Navigation rendering with inline JS
 - `partials/navigation.hbs` - Custom navigation partial
-- `assets/scss/components/_header.scss` - Arrow rotation CSS
-- `THEME-DOCUMENTATION.md` - Updated navigation docs
-- `THEME-QUICK-REFERENCE.md` - Updated navigation guide
+- `assets/scss/components/_header.scss` - Arrow rotation CSS, logo sizes, button gradient
+- `assets/scss/components/_slider.scss` - Layout flip, dot gradient, font sizes
+- `assets/scss/components/_announcement.scss` - Iridescent gradient, font size, text color
+- `assets/scss/components/_interactive.scss` - Share button hover color
+- `assets/scss/components/_reading-progress.scss` - 3-stop gradient (no pink)
+- `assets/scss/_variables.scss` - Removed pink iridescent variables
+- `assets/scss/_typography.scss` - Heading font size reductions
+- `assets/scss/components/_post.scss` - Post/page title sizes, related posts, author name
+- `assets/js/main.js` - Slider dot gradient (3-stop iridescent)
+- `THEME-DOCUMENTATION.md` - Updated navigation docs, design system, paths
+- `THEME-QUICK-REFERENCE.md` - Updated design guide
+- `README.md` - Removed Swiper, updated changelog
 - `GHOST-V6-REFERENCE.md` - New comprehensive Ghost reference

@@ -95,12 +95,10 @@ $dark-shadow: rgba(0, 0, 0, 0.8);
 // Accent Color (Iridescent Palette)
 // --------------------------------------------
 
-// Iridescent color stops
+// Iridescent color stops (canonical gradient: cyan → lavender → pearl)
 $iridescent-cyan: #9DD8F7;
 $iridescent-lavender: #B8A5E5;
-$iridescent-pink: #F7C4D8;
 $iridescent-pearl: #E8F5FF;
-$iridescent-pink-bright: #FFB3D9;
 
 // Legacy accent (kept for compatibility)
 $accent-default: #B8A5E5;

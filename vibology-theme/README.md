@@ -2,7 +2,7 @@
 
 A modern, elegant Ghost theme with dark mode, membership features, and flexible layouts.
 
-## Version 1.1.0 - Production Ready
+## Version 2.0.1 - Production Ready
 
 **What makes Vibology Theme special:**
 - Clean, minimal codebase with no bloat or overengineering
@@ -47,7 +47,7 @@ A modern, elegant Ghost theme with dark mode, membership features, and flexible 
 ### Components
 - Responsive header with sticky options
 - Announcement bar with custom gradient styling
-- Featured post slider (Swiper)
+- Featured post slider (custom implementation)
 - Image lightbox (GLightbox)
 - Table of contents (auto-generated)
 - Post cards (vertical, horizontal, masonry)
@@ -59,7 +59,7 @@ A modern, elegant Ghost theme with dark mode, membership features, and flexible 
 
 1. Navigate to the theme directory:
    ```bash
-   cd ~/Projects/Website/vibology-theme
+   cd ~/Vibology/Website/vibology-theme
    ```
 
 2. Install dependencies:
@@ -135,8 +135,8 @@ The theme uses the Twitter card image (X card in Ghost post settings) for square
 ### Announcement Bar
 The theme provides custom styling for Ghost's native announcement bar feature:
 
-- **Custom gradient background**: Cyan (#0ce4ef) to magenta (#ff03a5) vertical gradient
-- **Large, bold text**: 30px bold Cabin font (24px on mobile)
+- **Custom gradient background**: Iridescent vertical gradient (cyan #9DD8F7 → lavender #B8A5E5 → pearl #E8F5FF)
+- **Text**: 16px bold Cabin font (14px on mobile), Deep Indigo (#2D3561) color
 - **Compact design**: Minimal vertical padding for a sleek appearance
 - **Automatic rendering**: Ghost handles the display, theme provides the styling
 
@@ -151,7 +151,6 @@ The theme provides custom styling for Ghost's native announcement bar feature:
 The theme uses these lightweight libraries loaded from CDN:
 
 - **GLightbox** (~20KB) - Image lightbox with zoom and gallery
-- **Swiper** (~25KB) - Accessible carousel/slider
 - **Prism.js** - Syntax highlighting for code blocks
 
 ## Browser Support
@@ -177,14 +176,23 @@ MIT
 
 ## Version
 
-1.1.0 - Production Release (January 2026)
+2.0.1 - Production Release (February 2026)
 
 ### Changelog
 
+**v2.0.1** (2026-02-16)
+- Updated iridescent gradient throughout (cyan → lavender → pearl, no pink)
+- Reduced font sizes across headings for better readability
+- Flipped featured slider layout (image left, content right)
+- Replaced Swiper with custom lightweight slider implementation
+- Updated announcement bar to iridescent gradient with Deep Indigo text
+- Reduced logo size in header
+- Changed nav dropdown arrows to thin chevrons (down/up)
+- Removed pink from iridescent gradient
+
 **v1.1.0** (2026-01-25)
 - Added custom styling for Ghost's native announcement bar
-- Cyan-to-magenta vertical gradient background
-- Large, bold 30px Cabin font (24px on mobile)
+- Iridescent gradient background
 - Compact 8px vertical padding
 - Transparent inner elements for clean gradient display
 - Full support for links, bold, and italic text in announcements

@@ -99,29 +99,26 @@
   }
 }
 
-// Text content on left
+// Text content on right
 .featured-slide-content {
-  padding: 0 $space-4 $space-4 0;
+  order: 2;
+  padding: 0 0 $space-4 $space-4;
   flex: 1;
   min-width: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   overflow: visible;
-
-  @media (min-width: $breakpoint-md) {
-    order: 1;
-  }
 }
 
 // Image wrapper
 .featured-slide-image-wrapper {
+  order: 1;
   position: relative;
   flex-shrink: 0;
   overflow: visible;
 
   @media (min-width: $breakpoint-md) {
-    order: 2;
     width: 55%;
   }
 
@@ -161,17 +158,17 @@
 }
 
 .featured-slide-title {
-  font-size: $text-3xl;
+  font-size: 1.625rem; // 26px
   font-weight: $font-bold;
   line-height: $leading-tight;
   margin-bottom: $space-3;
 
   @media (min-width: $breakpoint-md) {
-    font-size: $text-4xl;
+    font-size: $text-3xl; // 30px
   }
 
   @media (min-width: $breakpoint-lg) {
-    font-size: $text-5xl;
+    font-size: 2.5rem; // 40px
   }
 
   a {
@@ -308,23 +305,27 @@
   }
 }
 
-// Position arrows over the image area (right side)
+// Position arrows over the image area (left side)
 .slider-prev {
-  // On desktop, position relative to image (right 50% of slider)
-  right: calc(50% - 48px - #{$space-4});
+  left: $space-4;
 
   @media (min-width: $breakpoint-md) {
+    left: $space-4;
     right: auto;
-    left: calc(45% + #{$space-4});
-  }
-
-  @media (min-width: $breakpoint-lg) {
-    left: calc(50% + #{$space-4});
   }
 }
 
 .slider-next {
-  right: $space-4;
+  // On desktop, right edge of the image (left 55% / 50% of slider)
+  right: calc(50% - 48px - #{$space-4});
+
+  @media (min-width: $breakpoint-md) {
+    right: calc(45% + #{$space-4});
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    right: calc(50% + #{$space-4});
+  }
 }
 
 // --------------------------------------------

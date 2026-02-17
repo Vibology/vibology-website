@@ -420,12 +420,31 @@
       const totalDots = dots.length;
       if (totalDots <= 1) return;
 
+      // Match the iridescent gradient: cyan → lavender → pearl
+      const stops = [
+        { pos: 0.00, r: 157, g: 216, b: 247 }, // #9DD8F7 cyan
+        { pos: 0.50, r: 184, g: 165, b: 229 }, // #B8A5E5 lavender
+        { pos: 1.00, r: 232, g: 245, b: 255 }, // #E8F5FF pearl
+      ];
+
       dots.forEach((dot, index) => {
-        // Interpolate between gold (#E8A825) and deep amber (#B86810)
         const position = index / (totalDots - 1);
-        const r = Math.round(232 + (184 - 232) * position);
-        const g = Math.round(168 + (104 - 168) * position);
-        const b = Math.round(37 + (16 - 37) * position);
+
+        // Find the two surrounding stops and interpolate
+        let lower = stops[0], upper = stops[stops.length - 1];
+        for (let i = 0; i < stops.length - 1; i++) {
+          if (position >= stops[i].pos && position <= stops[i + 1].pos) {
+            lower = stops[i];
+            upper = stops[i + 1];
+            break;
+          }
+        }
+
+        const range = upper.pos - lower.pos;
+        const t = range === 0 ? 0 : (position - lower.pos) / range;
+        const r = Math.round(lower.r + (upper.r - lower.r) * t);
+        const g = Math.round(lower.g + (upper.g - lower.g) * t);
+        const b = Math.round(lower.b + (upper.b - lower.b) * t);
         dot.style.setProperty('--bullet-color', `rgb(${r}, ${g}, ${b})`);
       });
     }
