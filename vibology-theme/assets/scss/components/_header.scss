@@ -112,9 +112,9 @@
 }
 
 .site-logo {
-  height: 32px;
+  height: 40px;
   width: auto;
-  max-width: 140px;
+  max-width: 180px;
   object-fit: contain;
   transition: filter $transition-slow;
   display: block; // Ensure proper rendering
@@ -131,17 +131,17 @@
           drop-shadow(0 0 12px rgba(184, 165, 229, 0.15));
 
   @media (min-width: $breakpoint-sm) {
-    height: 40px;
-    max-width: 175px;
+    height: 52px;
+    max-width: 220px;
   }
 
   @media (min-width: $breakpoint-md) {
-    height: 52px;
-    max-width: 250px;
+    height: 64px;
+    max-width: 320px;
   }
 
   @media (min-width: $breakpoint-lg) {
-    height: 60px;
+    height: 76px;
   }
 
   // Animated glow on hover
