@@ -334,6 +334,33 @@
     }
   }
 
+  // Float-left profile image with text wrap (use via HTML card)
+  .profile-image-float {
+    float: left;
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 50%;
+    margin: $space-2 $space-8 $space-6 0;
+    cursor: default;
+
+    @media (max-width: $breakpoint-sm) {
+      float: none;
+      display: block;
+      width: 160px;
+      height: 160px;
+      margin: 0 auto $space-6;
+    }
+  }
+
+  // Clearfix for sections containing a floated profile image
+  .profile-section::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+
 }
 
 // Post Meta Header (author and date/time info)
